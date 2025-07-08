@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ComunidadGaming - reddUD</title>
+        <link rel="stylesheet" href="ComunidadCSS.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <nav class="sidebar-nav">
+                    <div class="nav-item active" data-section="publicaciones">
+                        <i class="fas fa-home"></i>
+                        <span>Publicaciones</span>
+                    </div>
+                    <div class="nav-item" data-section="eventos">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Eventos</span>
+                    </div>
+                    <div class="nav-item" data-section="top-semana">
+                        <i class="fas fa-fire"></i>
+                        <span>Top de la semana</span>
+                    </div>
+                    <div class="nav-item" data-section="moderadores">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Moderadores</span>
+                    </div>
+                    <div class="nav-item" data-section="reglas">
+                        <i class="fas fa-book"></i>
+                        <span>Reglas</span>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Community Header -->
+                <div class="community-header">
+                    <div class="banner-container">
+                        <div class="banner"></div>
+                        <div class="avatar-container">
+                            <img src="https://via.placeholder.com/120x120/FF4500/FFFFFF?text=CG" alt="ComunidadGaming Avatar" class="avatar">
+                        </div>
+                    </div>
+
+                    <div class="community-info">
+                        <div class="info-left">
+                            <h1 class="community-name">ComunidadGaming</h1>
+                            <p class="community-handle">@ComunidadGaming</p>
+                            <p class="community-members">
+                                <i class="fas fa-users"></i>
+                                <span class="member-count">15,234</span> miembros
+                            </p>
+                            <p class="community-description">
+                                Un espacio para gamers donde compartimos experiencias, reviews, gameplay y todo lo relacionado con el mundo de los videojuegos. ¡Únete a la comunidad más activa de gaming!
+                            </p>
+                        </div>
+
+                        <div class="info-right">
+                            <button class="join-btn joined" id="joinBtn">
+                                <i class="fas fa-check"></i>
+                                <span>Unido</span>
+                            </button>
+                            <div class="community-actions">
+                                <button class="action-btn" title="Contactar moderadores">
+                                    <i class="fas fa-envelope"></i>
+                                </button>
+                                <button class="action-btn" title="Compartir comunidad">
+                                    <i class="fas fa-share-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Area -->
+                <div class="content-area">
+                    <!-- Posts Section -->
+                    <div class="section active" id="publicaciones">
+                        <div class="posts-container">
+                            <div class="post-card">
+                                <div class="post-image">
+                                    <img src="https://via.placeholder.com/400x200/6f42c1/FFFFFF?text=Cyberpunk+2077" alt="Post Image">
+                                </div>
+                                <div class="post-content">
+                                    <h3 class="post-title">Review completa de Cyberpunk 2077 después de 2 años</h3>
+                                    <div class="post-meta">
+                                        <img src="https://via.placeholder.com/32x32/007BFF/FFFFFF?text=U" alt="User" class="user-avatar">
+                                        <span class="username">@GamerPro2024</span>
+                                        <span class="post-time">hace 2 horas</span>
+                                    </div>
+                                    <div class="post-actions">
+                                        <button class="vote-btn upvote">
+                                            <i class="fas fa-arrow-up"></i>
+                                            <span class="vote-count">234</span>
+                                        </button>
+                                        <button class="vote-btn downvote">
+                                            <i class="fas fa-arrow-down"></i>
+                                            <span class="vote-count">12</span>
+                                        </button>
+                                        <button class="comment-btn">
+                                            <i class="fas fa-comment"></i>
+                                            <span>45 comentarios</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="post-card">
+                                <div class="post-image">
+                                    <img src="https://via.placeholder.com/400x200/28a745/FFFFFF?text=Elden+Ring" alt="Post Image">
+                                </div>
+                                <div class="post-content">
+                                    <h3 class="post-title">Tips para vencer a Malenia en Elden Ring</h3>
+                                    <div class="post-meta">
+                                        <img src="https://via.placeholder.com/32x32/dc3545/FFFFFF?text=S" alt="User" class="user-avatar">
+                                        <span class="username">@SoulsMaster</span>
+                                        <span class="post-time">hace 5 horas</span>
+                                    </div>
+                                    <div class="post-actions">
+                                        <button class="vote-btn upvote">
+                                            <i class="fas fa-arrow-up"></i>
+                                            <span class="vote-count">512</span>
+                                        </button>
+                                        <button class="vote-btn downvote">
+                                            <i class="fas fa-arrow-down"></i>
+                                            <span class="vote-count">8</span>
+                                        </button>
+                                        <button class="comment-btn">
+                                            <i class="fas fa-comment"></i>
+                                            <span>78 comentarios</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="post-card">
+                                <div class="post-image">
+                                    <img src="https://via.placeholder.com/400x200/ffc107/000000?text=Streaming+Setup" alt="Post Image">
+                                </div>
+                                <div class="post-content">
+                                    <h3 class="post-title">Mi setup de streaming para gaming - Guía completa</h3>
+                                    <div class="post-meta">
+                                        <img src="https://via.placeholder.com/32x32/17a2b8/FFFFFF?text=T" alt="User" class="user-avatar">
+                                        <span class="username">@TwitchStreamer</span>
+                                        <span class="post-time">hace 1 día</span>
+                                    </div>
+                                    <div class="post-actions">
+                                        <button class="vote-btn upvote">
+                                            <i class="fas fa-arrow-up"></i>
+                                            <span class="vote-count">189</span>
+                                        </button>
+                                        <button class="vote-btn downvote">
+                                            <i class="fas fa-arrow-down"></i>
+                                            <span class="vote-count">3</span>
+                                        </button>
+                                        <button class="comment-btn">
+                                            <i class="fas fa-comment"></i>
+                                            <span>23 comentarios</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="load-more">
+                            <button class="load-more-btn" id="loadMoreBtn">
+                                <span class="btn-text">Cargar más publicaciones</span>
+                                <div class="loading-spinner hidden">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Other sections (hidden by default) -->
+                    <div class="section" id="eventos">
+                        <div class="empty-state">
+                            <i class="fas fa-calendar-alt"></i>
+                            <h3>No hay eventos programados</h3>
+                            <p>Los eventos de la comunidad aparecerán aquí próximamente</p>
+                        </div>
+                    </div>
+
+                    <div class="section" id="top-semana">
+                        <div class="empty-state">
+                            <i class="fas fa-fire"></i>
+                            <h3>Top de la semana</h3>
+                            <p>Las publicaciones más populares de esta semana</p>
+                        </div>
+                    </div>
+
+                    <div class="section" id="moderadores">
+                        <div class="moderators-list">
+                            <h3>Moderadores de la comunidad</h3>
+                            <div class="moderator-card">
+                                <img src="https://via.placeholder.com/48x48/FF4500/FFFFFF?text=M" alt="Moderator" class="mod-avatar">
+                                <div class="mod-info">
+                                    <h4>@ModeratorChief</h4>
+                                    <p>Administrador principal</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section" id="reglas">
+                        <div class="rules-content">
+                            <h3>Reglas de la comunidad</h3>
+                            <div class="rule-item">
+                                <h4>1. Respeto mutuo</h4>
+                                <p>Mantén un ambiente respetuoso y constructivo en todas las interacciones.</p>
+                            </div>
+                            <div class="rule-item">
+                                <h4>2. Contenido relevante</h4>
+                                <p>Publica solo contenido relacionado con gaming y videojuegos.</p>
+                            </div>
+                            <div class="rule-item">
+                                <h4>3. No spam</h4>
+                                <p>Evita publicaciones repetitivas o promoción excesiva.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Vote Animation Container -->
+        <div class="vote-animation" id="voteAnimation"></div>
+
+        <script src="ComunidadJS.js"></script>
+    </body>
+</html>

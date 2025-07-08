@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Perfil de Usuario - reddUD</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="PerfilUsuarioCSS.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </head>
+    <body>
+        <div class="perfil-container">
+            <!-- Header con banner y avatar -->
+            <header class="perfil-header">
+                <div class="banner-container">
+                    <img src="https://images.unsplash.com/photo-1557682250-33bd709cbe85?w=800&h=200&fit=crop" alt="Banner del usuario" class="banner-image" id="bannerImage">
+                    <div class="banner-overlay"></div>
+                    <button class="edit-banner-btn" id="editBannerBtn" title="Editar banner">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
+
+                <div class="avatar-section">
+                    <div class="avatar-container">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="Avatar del usuario" class="avatar-image" id="avatarImage">
+                        <div class="status-indicator" id="statusIndicator"></div>
+                    </div>
+
+                    <div class="user-info">
+                        <h1 class="username" id="username">Alex Rodriguez</h1>
+                        <p class="user-handle" id="userHandle">@alexrod123</p>
+                        <div class="user-stats">
+                            <div class="stat-item" data-tooltip="Fecha de registro">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Marzo 2023</span>
+                            </div>
+                            <div class="stat-item" data-tooltip="Karma acumulado">
+                                <i class="fas fa-star"></i>
+                                <span id="karma">1,247</span>
+                            </div>
+                            <div class="stat-item" data-tooltip="Publicaciones">
+                                <i class="fas fa-file-alt"></i>
+                                <span id="posts">127</span>
+                            </div>
+                            <div class="stat-item" data-tooltip="Seguidores">
+                                <i class="fas fa-users"></i>
+                                <span id="followers">432</span>
+                            </div>
+                            <div class="stat-item" data-tooltip="Comunidades">
+                                <i class="fas fa-heart"></i>
+                                <span id="communities">23</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="edit-profile-btn" id="editProfileBtn" tabindex="0" aria-label="Editar perfil">
+                        <i class="fas fa-edit"></i>
+                        Editar perfil
+                    </button>
+                </div>
+            </header>
+
+            <!-- Contenido principal -->
+            <main class="perfil-main">
+                <!-- Navegación lateral -->
+                <aside class="sidebar" id="sidebar">
+                    <nav class="nav-menu" role="navigation" aria-label="Menú de perfil">
+                        <button class="nav-item active" data-section="publicaciones" tabindex="0">
+                            <i class="fas fa-newspaper"></i>
+                            <span>Mis publicaciones</span>
+                            <span class="nav-count">127</span>
+                        </button>
+                        <button class="nav-item" data-section="comentarios" tabindex="0">
+                            <i class="fas fa-comments"></i>
+                            <span>Comentarios</span>
+                            <span class="nav-count">89</span>
+                        </button>
+                        <button class="nav-item" data-section="guardados" tabindex="0">
+                            <i class="fas fa-bookmark"></i>
+                            <span>Guardados</span>
+                            <span class="nav-count">45</span>
+                        </button>
+                        <button class="nav-item" data-section="comunidades" tabindex="0">
+                            <i class="fas fa-users"></i>
+                            <span>Comunidades seguidas</span>
+                            <span class="nav-count">23</span>
+                        </button>
+                        <button class="nav-item" data-section="configuracion" tabindex="0">
+                            <i class="fas fa-cog"></i>
+                            <span>Configuración</span>
+                        </button>
+                    </nav>
+                </aside>
+
+                <!-- Contenido dinámico -->
+                <section class="content-area" id="contentArea">
+                    <div class="content-header">
+                        <h2 id="contentTitle">Mis publicaciones</h2>
+                        <div class="content-actions">
+                            <button class="action-btn primary" id="newPostBtn">
+                                <i class="fas fa-plus"></i>
+                                Nueva publicación
+                            </button>
+                            <button class="action-btn secondary" id="sortBtn">
+                                <i class="fas fa-sort"></i>
+                                Ordenar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="content-grid" id="contentGrid">
+                        <!-- Contenido dinámico se carga aquí -->
+                    </div>
+                </section>
+            </main>
+
+            <!-- Botón de menú móvil -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Overlay para móvil -->
+            <div class="mobile-overlay" id="mobileOverlay"></div>
+
+            <!-- Modal de edición -->
+            <div class="modal-overlay" id="modalOverlay">
+                <div class="modal" id="editModal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+                    <div class="modal-header">
+                        <h3 id="modalTitle">Editar perfil</h3>
+                        <button class="modal-close" id="modalClose" aria-label="Cerrar modal">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editForm">
+                            <div class="form-group">
+                                <label for="editUsername">Nombre de usuario</label>
+                                <input type="text" id="editUsername" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editHandle">Handle (@)</label>
+                                <input type="text" id="editHandle" name="handle" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="editBio">Biografía</label>
+                                <textarea id="editBio" name="bio" rows="3" placeholder="Cuéntanos sobre ti..."></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn-cancel" id="cancelEdit">Cancelar</button>
+                        <button type="submit" class="btn-save" id="saveEdit">Guardar cambios</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tooltip -->
+            <div class="tooltip" id="tooltip" role="tooltip"></div>
+        </div>
+
+        <script src="PerfilUsuarioJS.js"></script>
+    </body>
+</html>
