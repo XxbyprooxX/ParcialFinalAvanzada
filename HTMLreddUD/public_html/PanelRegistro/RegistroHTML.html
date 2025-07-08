@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registro de Usuario</title>
+        <link rel="stylesheet" href="RegistroCSS.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div class="theme-toggle">
+                <button id="themeToggle" aria-label="Cambiar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+
+            <div class="registration-panel">
+                <div class="panel-header">
+                    <h1>Crear Cuenta</h1>
+                    <p>Únete a nuestra comunidad</p>
+                </div>
+
+                <form id="registrationForm" novalidate>
+                    <!-- Email Field -->
+                    <div class="input-group">
+                        <div class="input-container">
+                            <input type="email" id="email" name="email" required aria-describedby="email-error">
+                            <label for="email">Correo electrónico</label>
+                            <i class="fas fa-envelope input-icon"></i>
+                        </div>
+                        <div class="error-message" id="email-error" role="alert"></div>
+                    </div>
+
+                    <!-- Username Field -->
+                    <div class="input-group">
+                        <div class="input-container">
+                            <input type="text" id="username" name="username" required aria-describedby="username-error">
+                            <label for="username">Nombre de usuario</label>
+                            <i class="fas fa-user input-icon"></i>
+                        </div>
+                        <div class="error-message" id="username-error" role="alert"></div>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="input-group">
+                        <div class="input-container">
+                            <input type="password" id="password" name="password" required aria-describedby="password-error">
+                            <label for="password">Contraseña</label>
+                            <i class="fas fa-lock input-icon"></i>
+                            <button type="button" class="password-toggle" id="passwordToggle" aria-label="Mostrar/ocultar contraseña">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength" id="passwordStrength">
+                            <div class="strength-bar">
+                                <div class="strength-fill"></div>
+                            </div>
+                            <span class="strength-text">Seguridad de la contraseña</span>
+                        </div>
+                        <div class="error-message" id="password-error" role="alert"></div>
+                    </div>
+
+                    <!-- Gender Field -->
+                    <div class="input-group">
+                        <label class="field-label">Género</label>
+                        <div class="radio-group" role="radiogroup" aria-labelledby="gender-label">
+                            <div class="radio-option">
+                                <input type="radio" id="male" name="gender" value="male" required>
+                                <label for="male">Masculino</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="female" name="gender" value="female" required>
+                                <label for="female">Femenino</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="nonbinary" name="gender" value="nonbinary" required>
+                                <label for="nonbinary">No binario</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="prefer-not-say" name="gender" value="prefer-not-say" required>
+                                <label for="prefer-not-say">Prefiero no decirlo</label>
+                            </div>
+                        </div>
+                        <div class="error-message" id="gender-error" role="alert"></div>
+                    </div>
+
+                    <!-- Interests Field -->
+                    <div class="input-group">
+                        <label class="field-label">Intereses (selecciona al menos uno)</label>
+                        <div class="interests-grid">
+                            <div class="interest-option">
+                                <input type="checkbox" id="technology" name="interests" value="technology">
+                                <label for="technology">
+                                    <i class="fas fa-laptop-code"></i>
+                                    Tecnología
+                                </label>
+                            </div>
+                            <div class="interest-option">
+                                <input type="checkbox" id="gaming" name="interests" value="gaming">
+                                <label for="gaming">
+                                    <i class="fas fa-gamepad"></i>
+                                    Videojuegos
+                                </label>
+                            </div>
+                            <div class="interest-option">
+                                <input type="checkbox" id="music" name="interests" value="music">
+                                <label for="music">
+                                    <i class="fas fa-music"></i>
+                                    Música
+                                </label>
+                            </div>
+                            <div class="interest-option">
+                                <input type="checkbox" id="sports" name="interests" value="sports">
+                                <label for="sports">
+                                    <i class="fas fa-futbol"></i>
+                                    Deportes
+                                </label>
+                            </div>
+                            <div class="interest-option">
+                                <input type="checkbox" id="reading" name="interests" value="reading">
+                                <label for="reading">
+                                    <i class="fas fa-book"></i>
+                                    Lectura
+                                </label>
+                            </div>
+                            <div class="interest-option">
+                                <input type="checkbox" id="movies" name="interests" value="movies">
+                                <label for="movies">
+                                    <i class="fas fa-film"></i>
+                                    Cine
+                                </label>
+                            </div>
+                            <div class="interest-option">
+                                <input type="checkbox" id="digital-art" name="interests" value="digital-art">
+                                <label for="digital-art">
+                                    <i class="fas fa-palette"></i>
+                                    Arte Digital
+                                </label>
+                            </div>
+                        </div>
+                        <div class="error-message" id="interests-error" role="alert"></div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn" id="submitBtn" disabled>
+                        <span class="btn-text">Registrar</span>
+                        <i class="fas fa-arrow-right btn-icon"></i>
+                    </button>
+                </form>
+
+                <div class="panel-footer">
+                    <p>¿Ya tienes una cuenta? <a href="#" class="login-link">Inicia sesión</a></p>
+                </div>
+            </div>
+        </div>
+        <script src="RegistroJS.js"></script>
+    </body>
+</html>

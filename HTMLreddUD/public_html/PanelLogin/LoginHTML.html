@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Panel de Login</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="LoginCSS.css">
+    </head>
+    <body>
+        <div class="background-particles"></div>
+        <div class="container">
+            <div class="login-card">
+                <div class="logo-container">
+                    <div class="logo" aria-hidden="true">🔒</div>
+                    <div class="toggle-darkmode mode-toggle" aria-hidden="true">
+                        <div class="moon-icon">🌙</div>
+                        <div class="sun-icon">☀️</div>
+                    </div>
+                    <h1 class="title">Iniciar Sesión</h1>
+                    <p class="subtitle">Bienvenido de vuelta</p>
+                </div>
+                <form class="login-form" id="loginForm" novalidate>
+                    <div class="input-group">
+                        <label for="email">Email o Usuario</label>
+                        <input type="text" id="email" name="email" class="input-field" placeholder=" " required>
+                        <div class="validation-icon"></div>
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" class="input-field" placeholder=" " required>
+                        <div class="validation-icon"></div>
+                        <div class="error-message" id="passwordError"></div>
+                    </div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="remember" name="remember">
+                            <span class="checkmark"></span>
+                            Recordarme
+                        </label>
+                        <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                    </div>
+                    <button type="submit" class="login-button" id="loginButton">
+                        <span class="button-text">Iniciar Sesión</span>
+                        <span class="loading-spinner" aria-hidden="true" style="display:none;">
+                            <div class="spinner"></div>
+                        </span>
+                    </button>
+                    <div class="divider"><span>o</span></div>
+                    <div class="register-link">
+                        <p>¿No tienes cuenta? <a href="#" class="register-btn">Registrarse</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script src="LoginJS.js"></script>
+    </body>
+</html>
