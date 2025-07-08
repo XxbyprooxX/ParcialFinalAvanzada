@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package edu.progAvUD.reddUD.login.model;
+package edu.progAvUD.reddUD.login.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,4 +25,14 @@ public class Login {
     private Long id;
     private String nombreUsuario;
     private String contraseña;
+
+    public Login(String nombreUsuario, String contraseña) {
+        this.nombreUsuario = nombreUsuario;
+        this.contraseña = contraseña;
+    }
+
+    public Login() {
+    }
+    
+    
 }

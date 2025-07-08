@@ -4,6 +4,7 @@
  */
 package edu.progAvUD.reddUD.login.controllers;
 
+import edu.progAvUD.reddUD.login.repositories.LoginRepository;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -12,5 +13,8 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 public class LoginController {
+    
+    
+    
     
 }
