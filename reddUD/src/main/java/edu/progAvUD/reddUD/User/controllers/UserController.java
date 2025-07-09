@@ -1,4 +1,4 @@
-package edu.progAvUD.reddUD.UserService.controllers;
+package edu.progAvUD.reddUD.User.controllers;
 
 import org.springframework.stereotype.Controller;
 

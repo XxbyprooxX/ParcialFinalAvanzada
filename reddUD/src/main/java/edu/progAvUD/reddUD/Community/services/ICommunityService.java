@@ -2,15 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package edu.progAvUD.reddUD.login.services;
-
-import edu.progAvUD.reddUD.login.models.Login;
+package edu.progAvUD.reddUD.Community.services;
 
 /**
  *
- * @author Andres Felipe
+ * @author Cristianlol789
  */
-public interface ILoginService {
+public interface ICommunityService {
     
-    public Login obtenerLoginPorUsuario(String usuario);
 }

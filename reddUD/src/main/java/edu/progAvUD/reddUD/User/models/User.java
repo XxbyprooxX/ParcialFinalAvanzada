@@ -1,4 +1,4 @@
-package edu.progAvUD.reddUD.UserService.models;
+package edu.progAvUD.reddUD.User.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -6,30 +6,52 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import lombok.Data;
 
 /**
  *
  * @author Cristianlol789
  */
+
 @Data
 @Entity
-
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String correo;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String nombreUsuario;
 
+    @Column(nullable = false)
     private String contraseña;
+
+    @Column(nullable = false)
     private String genero;
+
+    @ElementCollection
+    @Column(name = "interes")
+    private List<String> intereses;
+
+    @Lob
+    @Column(name = "avatar", columnDefinition = "LONGBLOB")
+    private byte[] avatar;
+
+    @Lob
+    @Column(name = "banner", columnDefinition = "LONGBLOB")
+    private byte[] banner;
+
+    private LocalDate fechaRegistro;
+
+    private int karma;
 
     @ElementCollection
     private ArrayList<String> interes;

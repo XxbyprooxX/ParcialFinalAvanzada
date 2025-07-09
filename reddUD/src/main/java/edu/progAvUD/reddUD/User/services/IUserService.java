@@ -1,4 +1,4 @@
-package edu.progAvUD.reddUD.UserService.services;
+package edu.progAvUD.reddUD.User.services;
 
 /**
  *

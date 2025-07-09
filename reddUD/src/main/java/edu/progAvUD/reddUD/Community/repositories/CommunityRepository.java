@@ -2,19 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package edu.progAvUD.reddUD.login.repositories;
+package edu.progAvUD.reddUD.Community.repositories;
 
-import edu.progAvUD.reddUD.login.models.Login;
+import edu.progAvUD.reddUD.AuthenticationAuthorization.models.Login;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author Andres Felipe
+ * @author Cristianlol789
  */
-@Repository
-public interface LoginRepository extends JpaRepository<Login, Long> {
-      
-    
+public interface CommunityRepository extends JpaRepository<Login, Long>{
     
 }

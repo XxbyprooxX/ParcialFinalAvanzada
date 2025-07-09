@@ -1,6 +1,6 @@
-package edu.progAvUD.reddUD.UserService.repositories;
+package edu.progAvUD.reddUD.User.repositories;
 
-import edu.progAvUD.reddUD.UserService.models.User;
+import edu.progAvUD.reddUD.User.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
