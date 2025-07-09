@@ -36,6 +36,15 @@ const validationRules = {
 // Inicialización del DOM
 document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
+
+    // Add navigation for "Inicia sesión" link
+    const loginLink = document.querySelector('.login-link');
+    if (loginLink) {
+        loginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = '../PanelLogin/LoginHTML.html';
+        });
+    }
 });
 
 function initializeApp() {

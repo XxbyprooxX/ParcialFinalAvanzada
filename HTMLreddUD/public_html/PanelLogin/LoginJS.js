@@ -305,4 +305,13 @@ document.head.appendChild(style);
 
 document.addEventListener('DOMContentLoaded', () => {
     new LoginJS();
+
+    // Add navigation for "Registrarse" link
+    const registerLink = document.querySelector('.register-btn');
+    if (registerLink) {
+        registerLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = '../PanelRegistro/RegistroHTML.html';
+        });
+    }
 });
