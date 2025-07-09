@@ -12,7 +12,7 @@ boton.addEventListener("click", evento => {
 let hacerLogin = async() => {
     let campos = {};
 
-    campos.nombreUsuario = document.getElementById("email").value;
+    campos.nombreUsuario = document.getElementById("usuario").value;
     campos.contrasena = document.getElementById("password").value;
 
     const peticion = await fetch("http://localhost:8080/api/login",

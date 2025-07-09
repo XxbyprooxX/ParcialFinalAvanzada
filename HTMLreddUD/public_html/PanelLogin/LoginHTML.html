@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Panel de Login</title>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <!--<link rel="stylesheet" href="LoginCSS.css">-->
+        <link rel="stylesheet" href="LoginCSS.css">
     </head>
     <body>
         <div class="background-particles"></div>
@@ -22,10 +22,10 @@
                 </div>
                 <form class="login-form" id="loginForm" novalidate method="POST">
                     <div class="input-group">
-                        <label for="email">Usuario</label>
-                        <input type="text" id="email" name="email" class="input-field" placeholder=" " required>
+                        <label for="usuario">Usuario</label>
+                        <input type="text" id="usuario" name="usuario" class="input-field" placeholder=" " required>
                         <div class="validation-icon"></div>
-                        <div class="error-message" id="emailError"></div>
+                        <div class="error-message" id="usuarioError"></div>
                     </div>
                     <div class="input-group">
                         <label for="password">Contraseña</label>
@@ -55,6 +55,6 @@
                 <script src="ComunicacionLogin.js"></script>
             </div>
         </div>
-    <!--    <script src="LoginJS.js"></script> -->
+        <script src="LoginJS.js"></script> 
     </body>
 </html>

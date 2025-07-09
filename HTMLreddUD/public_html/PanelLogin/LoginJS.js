@@ -1,7 +1,7 @@
 class LoginJS {
     constructor() {
         this.form = document.getElementById('loginForm');
-        this.emailInput = document.getElementById('email');
+        this.usuarioInput = document.getElementById('usuario');
         this.passwordInput = document.getElementById('password');
         this.loginButton = document.getElementById('loginButton');
         this.spinner = this.loginButton.querySelector('.loading-spinner');
@@ -21,7 +21,7 @@ class LoginJS {
         this.form.addEventListener('submit', e => this.onSubmit(e));
 
         // Input validation
-        [this.emailInput, this.passwordInput].forEach(input => {
+        [this.usuarioInput, this.passwordInput].forEach(input => {
             input.addEventListener('focus', () => this.onInputFocus(input));
             input.addEventListener('blur', () => this.onInputBlur(input));
             input.addEventListener('input', () => this.onInputChange(input));
@@ -74,11 +74,11 @@ class LoginJS {
         if (!value) {
             isValid = false;
             errorMessage = 'Este campo es requerido';
-        } else if (inputType === 'email') {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(value)) {
+        } else if (inputType === 'usuario') {
+            const usuarioRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!usuarioRegex.test(value)) {
                 isValid = false;
-                errorMessage = 'Por favor ingresa un email válido';
+                errorMessage = 'Por favor ingresa un usuario válido';
             }
         } else if (inputType === 'password') {
             if (value.length < 6) {
@@ -117,16 +117,16 @@ class LoginJS {
     }
 
     validateForm() {
-        const emailValid = this.validateInput(this.emailInput);
+        const usuarioValid = this.validateInput(this.usuarioInput);
         const passwordValid = this.validateInput(this.passwordInput);
-        return emailValid && passwordValid;
+        return usuarioValid && passwordValid;
     }
 
     animateEmptyFieldsError() {
         // Check which fields are empty
         const emptyFields = [];
-        if (!this.emailInput.value.trim())
-            emptyFields.push(this.emailInput);
+        if (!this.usuarioInput.value.trim())
+            emptyFields.push(this.usuarioInput);
         if (!this.passwordInput.value.trim())
             emptyFields.push(this.passwordInput);
 
