@@ -56,12 +56,17 @@ public class User {
     @ElementCollection
     private ArrayList<String> interes;
 
-    public User(Long id, String correo, String nombreUsuario, String contraseña, String genero, ArrayList<String> interes) {
+    public User(Long id, String correo, String nombreUsuario, String contraseña, String genero, List<String> intereses, byte[] avatar, byte[] banner, ArrayList<String> interes) {
         this.id = id;
         this.correo = correo;
         this.nombreUsuario = nombreUsuario;
         this.contraseña = contraseña;
         this.genero = genero;
+        this.intereses = intereses;
+        this.avatar = avatar;
+        this.banner = banner;
+        this.fechaRegistro = LocalDate.now();
+        this.karma = 0;
         this.interes = interes;
     }
 

@@ -2,15 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package edu.progAvUD.reddUD.Community.repositories;
-
-import edu.progAvUD.reddUD.Community.models.Community;
-import org.springframework.data.jpa.repository.JpaRepository;
+package edu.progAvUD.reddUD.Comment.services;
 
 /**
  *
  * @author Cristianlol789
  */
-public interface CommunityRepository extends JpaRepository<Community, Long>{
+public interface ICommentService {
     
 }
