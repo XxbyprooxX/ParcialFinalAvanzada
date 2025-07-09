@@ -17,24 +17,19 @@ class LoginJS {
     }
 
     setupListeners() {
-        // Form submission
         this.form.addEventListener('submit', e => this.onSubmit(e));
 
-        // Input validation
         [this.usuarioInput, this.passwordInput].forEach(input => {
             input.addEventListener('focus', () => this.onInputFocus(input));
             input.addEventListener('blur', () => this.onInputBlur(input));
             input.addEventListener('input', () => this.onInputChange(input));
         });
 
-        // Button effects
         this.loginButton.addEventListener('click', e => this.createRipple(e));
         this.loginButton.addEventListener('mouseenter', () => this.onButtonHover());
 
-        // Dark mode toggle
         this.modeToggle.addEventListener('click', () => this.toggleDarkMode());
 
-        // Prevent form submission on empty fields with animation
         this.form.addEventListener('submit', e => {
             if (!this.validateForm()) {
                 e.preventDefault();
@@ -75,10 +70,9 @@ class LoginJS {
             isValid = false;
             errorMessage = 'Este campo es requerido';
         } else if (inputType === 'usuario') {
-            const usuarioRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!usuarioRegex.test(value)) {
+            if (value.length < 4 || /\s/.test(value)) {
                 isValid = false;
-                errorMessage = 'Por favor ingresa un usuario válido';
+                errorMessage = 'El nombre de usuario debe tener al menos 4 caracteres y sin espacios';
             }
         } else if (inputType === 'password') {
             if (value.length < 6) {
@@ -123,18 +117,15 @@ class LoginJS {
     }
 
     animateEmptyFieldsError() {
-        // Check which fields are empty
         const emptyFields = [];
         if (!this.usuarioInput.value.trim())
             emptyFields.push(this.usuarioInput);
         if (!this.passwordInput.value.trim())
             emptyFields.push(this.passwordInput);
 
-        // Animate button shake
         this.loginButton.classList.add('shake');
         setTimeout(() => this.loginButton.classList.remove('shake'), 500);
 
-        // Animate empty fields
         emptyFields.forEach(field => {
             field.classList.add('error');
             setTimeout(() => {
@@ -142,14 +133,12 @@ class LoginJS {
             }, 100);
         });
 
-        // Add wiggle animation to button when clicked with empty fields
         this.loginButton.classList.add('wiggle');
         setTimeout(() => this.loginButton.classList.remove('wiggle'), 300);
     }
 
     onButtonHover() {
         if (!this.isSubmitting) {
-            // Add subtle animation on hover
             this.loginButton.style.transform = 'translateY(-2px)';
         }
     }
@@ -171,19 +160,14 @@ class LoginJS {
     async performLogin() {
         this.isSubmitting = true;
         this.loginButton.disabled = true;
-
-        // Show loading state
         this.buttonText.style.opacity = '0';
         this.spinner.style.display = 'block';
 
         try {
-            // Simulate API call
             await new Promise(resolve => setTimeout(resolve, 2000));
 
-            // Success animation
             this.showSuccessAnimation();
 
-            // Reset form after success
             setTimeout(() => {
                 this.form.reset();
                 this.resetValidationIcons();
@@ -191,11 +175,9 @@ class LoginJS {
             }, 1000);
 
         } catch (error) {
-            // Error animation
             this.showErrorAnimation();
             this.showErrorMessage('Credenciales incorrectas. Por favor intenta de nuevo.');
         } finally {
-            // Reset button state
             setTimeout(() => {
                 this.resetButtonState();
             }, 1500);
@@ -214,8 +196,6 @@ class LoginJS {
         this.buttonText.textContent = 'Error';
         this.buttonText.style.opacity = '1';
         this.spinner.style.display = 'none';
-
-        // Shake animation
         this.loginButton.classList.add('shake');
         setTimeout(() => this.loginButton.classList.remove('shake'), 500);
     }
@@ -237,7 +217,6 @@ class LoginJS {
     }
 
     showSuccessMessage() {
-        // Create a temporary success message
         const successMsg = document.createElement('div');
         successMsg.innerHTML = '¡Inicio de sesión exitoso!';
         successMsg.style.cssText = `
@@ -260,7 +239,6 @@ class LoginJS {
     }
 
     showErrorMessage(message) {
-        // Create a temporary error message
         const errorMsg = document.createElement('div');
         errorMsg.innerHTML = message;
         errorMsg.style.cssText = `
@@ -294,9 +272,7 @@ class LoginJS {
         circle.classList.add('ripple-effect');
 
         const ripple = button.querySelector('.ripple-effect');
-        if (ripple) {
-            ripple.remove();
-        }
+        if (ripple) ripple.remove();
 
         button.appendChild(circle);
         setTimeout(() => circle.remove(), 800);
@@ -306,11 +282,9 @@ class LoginJS {
         const body = document.body;
         body.classList.toggle('dark-mode');
 
-        // Save preference
         const isDarkMode = body.classList.contains('dark-mode');
         localStorage.setItem('darkMode', isDarkMode);
 
-        // Add transition animation
         this.modeToggle.style.transform = 'scale(0.9)';
         setTimeout(() => {
             this.modeToggle.style.transform = 'scale(1)';
@@ -318,7 +292,6 @@ class LoginJS {
     }
 }
 
-// Add CSS for success/error message animations
 const style = document.createElement('style');
 style.textContent = `
     @keyframes fadeInOut {
