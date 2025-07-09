@@ -114,37 +114,37 @@ function setupScrollAnimations() {
     });
 }
 
-// Botón flotante CTA
-function setupFloatingCTA() {
-    const floatingCTA = document.getElementById('floatingCTA');
-    let isVisible = false;
+    // Botón flotante CTA
+    function setupFloatingCTA() {
+        const floatingCTA = document.getElementById('floatingCTA');
+        let isVisible = false;
 
-    // Mostrar/ocultar basado en scroll
-    window.addEventListener('scroll', function () {
-        const scrollPosition = window.pageYOffset;
-        const windowHeight = window.innerHeight;
+        // Mostrar/ocultar basado en scroll
+        window.addEventListener('scroll', function () {
+            const scrollPosition = window.pageYOffset;
+            const windowHeight = window.innerHeight;
 
-        if (scrollPosition > windowHeight * 0.5 && !isVisible) {
-            floatingCTA.style.opacity = '1';
-            floatingCTA.style.transform = 'translateY(0)';
-            isVisible = true;
-        } else if (scrollPosition <= windowHeight * 0.5 && isVisible) {
-            floatingCTA.style.opacity = '0';
-            floatingCTA.style.transform = 'translateY(100px)';
-            isVisible = false;
-        }
-    });
+            if (scrollPosition > windowHeight * 0.5 && !isVisible) {
+                floatingCTA.style.opacity = '1';
+                floatingCTA.style.transform = 'translateY(0)';
+                isVisible = true;
+            } else if (scrollPosition <= windowHeight * 0.5 && isVisible) {
+                floatingCTA.style.opacity = '0';
+                floatingCTA.style.transform = 'translateY(100px)';
+                isVisible = false;
+            }
+        });
 
-    // Configurar estado inicial
-    floatingCTA.style.opacity = '0';
-    floatingCTA.style.transform = 'translateY(100px)';
-    floatingCTA.style.transition = 'all 0.3s ease';
+        // Configurar estado inicial
+        floatingCTA.style.opacity = '0';
+        floatingCTA.style.transform = 'translateY(100px)';
+        floatingCTA.style.transition = 'all 0.3s ease';
 
-    // Agregar funcionalidad al botón
-    floatingCTA.addEventListener('click', function () {
-        showModal('¡Únete a reddUD!', 'Funcionalidad de registro próximamente...');
-    });
-}
+        // Agregar funcionalidad al botón
+        floatingCTA.addEventListener('click', function () {
+            window.location.href = '../PanelRegistro/RegistroHTML.html';
+        });
+    }
 
 // Scroll suave para enlaces internos
 function setupSmoothScrolling() {
@@ -202,8 +202,12 @@ function setupInteractiveElements() {
     const joinButtons = document.querySelectorAll('.btn-primary');
     joinButtons.forEach(button => {
         button.addEventListener('click', function () {
-            if (this.textContent.includes('Únete') || this.textContent.includes('Empezar')) {
-                showModal('¡Bienvenido a reddUD!', 'El registro estará disponible pronto. ¡Mantente atento!');
+            if (this.textContent.includes('Únete')) {
+                window.location.href = '../PanelRegistro/RegistroHTML.html';
+            } else if (this.textContent.includes('Empezar')) {
+                window.location.href = '../PanelLogin/LoginHTML.html';
+            } else if (this.textContent.includes('Registrarse')) {
+                window.location.href = '../PanelRegistro/RegistroHTML.html';
             }
         });
     });
@@ -212,7 +216,9 @@ function setupInteractiveElements() {
     exploreButtons.forEach(button => {
         button.addEventListener('click', function () {
             if (this.textContent.includes('Explorar')) {
-                showModal('Explorar Comunidades', 'Descubre miles de comunidades increíbles. Funcionalidad próximamente...');
+                window.location.href = '../PanelLogin/LoginHTML.html';
+            } else if (this.textContent.includes('Iniciar Sesión')) {
+                window.location.href = '../PanelLogin/LoginHTML.html';
             }
         });
     });
