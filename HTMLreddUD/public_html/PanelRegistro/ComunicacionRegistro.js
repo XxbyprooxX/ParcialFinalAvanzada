@@ -6,6 +6,7 @@ import {createConfetti} from './RegistroJS.js';
 let botonRegistro = document.getElementById("submitBtn");
 
 botonRegistro.addEventListener("click", evento => {
+    evento.preventDefault(); 
     hacerRegistro();
 });
 
@@ -21,7 +22,7 @@ let hacerRegistro = async() => {
     campos.genero = document.querySelector('input[name="gender"]:checked')?.value;
 
     // Obtener intereses seleccionados (checkboxes)
-    campo.intereses = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(cb => cb.value);
+    campos.intereses = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(cb => cb.value);
 
 
     const peticion = await fetch("http://localhost:9000/api/user",
