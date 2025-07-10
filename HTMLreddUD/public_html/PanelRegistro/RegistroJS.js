@@ -197,7 +197,7 @@ function validatePassword(password) {
     };
 }
 
-function showFieldError(field, message) {
+export function showFieldError(field, message) {
     const container = field.closest('.input-container');
     const errorElement = document.getElementById(`${field.name}-error`);
     
@@ -211,7 +211,7 @@ function showFieldError(field, message) {
     }, 500);
 }
 
-function clearFieldError(field) {
+export function clearFieldError(field) {
     const container = field.closest('.input-container');
     const errorElement = document.getElementById(`${field.name}-error`);
     
@@ -425,7 +425,7 @@ function handleFormSubmission() {
     }, 2000);
 }
 
-function showSuccess() {
+export function showSuccess() {
     const submitBtn = document.getElementById('submitBtn');
     const btnText = submitBtn.querySelector('.btn-text');
     const btnIcon = submitBtn.querySelector('.btn-icon');
@@ -438,7 +438,7 @@ function showSuccess() {
     createConfetti();
 }
 
-function createConfetti() {
+export function createConfetti() {
     const colors = ['#007BFF', '#28a745', '#ffc107', '#dc3545', '#6f42c1'];
     
     for (let i = 0; i < 50; i++) {
