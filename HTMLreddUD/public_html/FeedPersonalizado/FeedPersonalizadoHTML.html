@@ -13,91 +13,75 @@
             <a href="../PerfilUsuario/PerfilUsuarioHTML.html" role="menuitem" tabindex="0">Ver Perfil</a>
             <a href="../PanelInicioPagina/InicioPaginaHTML.html" role="menuitem" tabindex="0">Cerrar Sesión</a>
         </div>
-        <div class="app-container">
-            <!-- Header personalizado -->
-            <header class="feed-header">
-                <div class="greeting-container">
-                    <h1 class="greeting-text">Hola Cristian, esto es lo que está pasando ahora</h1>
-                    <div class="greeting-time" id="currentTime"></div>
-                </div>
-            </header>
 
-            <!-- Filtros y ordenación -->
-            <div class="filters-container">
-                <div class="content-filters">
-                    <div class="filter-chip active" data-filter="all">
-                        <i class="fas fa-th-large"></i>
-                        Todo
-                    </div>
-                    <div class="filter-chip" data-filter="text">
-                        <i class="fas fa-font"></i>
-                        Texto
-                    </div>
-                    <div class="filter-chip" data-filter="image">
-                        <i class="fas fa-image"></i>
-                        Imagen
-                    </div>
-                    <div class="filter-chip" data-filter="poll">
-                        <i class="fas fa-poll"></i>
-                        Encuesta
-                    </div>
-                    <div class="filter-chip" data-filter="video">
-                        <i class="fas fa-video"></i>
-                        Video
-                    </div>
-                </div>
-                <div class="sort-options">
-                    <select id="sortSelect">
-                        <option value="trending">Tendencias</option>
-                        <option value="top">Top del día</option>
-                        <option value="new">Nuevos</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Carrusel de tendencias -->
-            <div class="trending-carousel">
-                <h2 class="carousel-title">
-                    <i class="fas fa-fire"></i>
-                    Tendencias ahora
-                </h2>
-                <div class="carousel-container">
-                    <div class="carousel-track" id="trendingTrack">
-                        <!-- Las tendencias se generan dinámicamente -->
-                    </div>
-                    <button class="carousel-btn prev" id="prevTrending">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="carousel-btn next" id="nextTrending">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Feed principal -->
-            <main class="feed-main">
-                <div class="feed-grid" id="feedGrid">
-                    <!-- Las publicaciones se generan dinámicamente -->
-                </div>
-                <div class="loading-indicator" id="loadingIndicator">
-                    <div class="spinner"></div>
-                    <p>Cargando más contenido...</p>
-                </div>
-            </main>
-
-            <!-- Sidebar de comunidades sugeridas -->
-            <aside class="suggestions-sidebar">
+        <div class="app-layout">
+            <!-- Sidebar izquierdo: comunidades unidas -->
+            <aside class="joined-communities-sidebar">
                 <h3 class="sidebar-title">
-                    <i class="fas fa-plus-circle"></i>
-                    Comunidades sugeridas
+                    <i class="fas fa-users"></i>
+                    Tus comunidades
                 </h3>
-                <div class="suggested-communities" id="suggestedCommunities">
-                    <!-- Las sugerencias se generan dinámicamente -->
+                <div id="joinedCommunities">
+                    <!-- Contenido dinámico desde JS -->
                 </div>
             </aside>
 
-            <!-- Notificaciones de feedback -->
-            <div class="notification-container" id="notificationContainer"></div>
+            <!-- Contenedor principal original -->
+            <div class="app-container">
+                <!-- Header personalizado -->
+                <header class="feed-header">
+                    <div class="greeting-container">
+                        <h1 class="greeting-text">Hola Cristian, esto es lo que está pasando ahora</h1>
+                        <div class="greeting-time" id="currentTime"></div>
+                    </div>
+                </header>
+
+                <!-- Filtros -->
+                <div class="filters-container">
+                    <div class="content-filters">
+                        <div class="filter-chip active" data-filter="all"><i class="fas fa-th-large"></i>Todo</div>
+                        <div class="filter-chip" data-filter="text"><i class="fas fa-font"></i>Texto</div>
+                        <div class="filter-chip" data-filter="image"><i class="fas fa-image"></i>Imagen</div>
+                        <div class="filter-chip" data-filter="poll"><i class="fas fa-poll"></i>Encuesta</div>
+                        <div class="filter-chip" data-filter="video"><i class="fas fa-video"></i>Video</div>
+                    </div>
+                    <div class="sort-options">
+                        <select id="sortSelect">
+                            <option value="trending">Tendencias</option>
+                            <option value="top">Top del día</option>
+                            <option value="new">Nuevos</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Carrusel -->
+                <div class="trending-carousel">
+                    <h2 class="carousel-title"><i class="fas fa-fire"></i>Tendencias ahora</h2>
+                    <div class="carousel-container">
+                        <div class="carousel-track" id="trendingTrack"></div>
+                        <button class="carousel-btn prev" id="prevTrending"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-btn next" id="nextTrending"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Feed principal -->
+                <main class="feed-main">
+                    <div class="feed-grid" id="feedGrid"></div>
+                    <div class="loading-indicator" id="loadingIndicator">
+                        <div class="spinner"></div>
+                        <p>Cargando más contenido...</p>
+                    </div>
+                </main>
+
+                <!-- Sidebar derecho: sugerencias -->
+                <aside class="suggestions-sidebar">
+                    <h3 class="sidebar-title"><i class="fas fa-plus-circle"></i>Comunidades sugeridas</h3>
+                    <div class="suggested-communities" id="suggestedCommunities"></div>
+                </aside>
+
+                <!-- Notificaciones -->
+                <div class="notification-container" id="notificationContainer"></div>
+            </div>
         </div>
 
         <script src="FeedPersonalizadoJS.js"></script>

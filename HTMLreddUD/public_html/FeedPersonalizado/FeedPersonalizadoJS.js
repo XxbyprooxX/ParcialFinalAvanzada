@@ -225,6 +225,15 @@ function initializeApp() {
 
     // Configurar infinite scroll
     setupInfiniteScroll();
+
+    appState.joinedCommunities = [
+        {name: 'r/tecnologia', description: 'Todo sobre innovación y gadgets'},
+        {name: 'r/gaming', description: 'Tu espacio gamer'},
+        {name: 'r/libros', description: 'Lectura, reseñas y recomendaciones'}
+    ];
+
+    renderJoinedCommunities();
+
 }
 
 function updateCurrentTime() {
@@ -817,6 +826,26 @@ const additionalStyles = `
         margin-right: 10px;
     }
 `;
+function renderJoinedCommunities() {
+    const container = document.getElementById('joinedCommunities');
+    if (!container)
+        return;
+
+    container.innerHTML = '';
+
+    appState.joinedCommunities.forEach(comm => {
+        const div = document.createElement('div');
+        div.className = 'community';
+        div.innerHTML = `
+            <h4>${comm.name}</h4>
+            <p>${comm.description}</p>
+        `;
+        div.addEventListener('click', () => {
+            showNotification(`Abriendo ${comm.name}`);
+        });
+        container.appendChild(div);
+    });
+}
 
 // Añadir estilos adicionales al documento
 const styleSheet = document.createElement('style');
