@@ -1,4 +1,3 @@
-// Datos de ejemplo para el perfil
 const userData = {
     username: "Alex Rodriguez",
     handle: "@alexrod123",
@@ -140,52 +139,82 @@ class PerfilUsuario {
         });
 
         // Botón de editar perfil
-        document.getElementById('editProfileBtn').addEventListener('click', () => {
-            this.openEditModal();
-        });
+        const editProfileBtn = document.getElementById('editProfileBtn');
+        if (editProfileBtn) {
+            editProfileBtn.addEventListener('click', () => {
+                this.openEditModal();
+            });
+        }
 
         // Modal
-        document.getElementById('modalClose').addEventListener('click', () => {
-            this.closeModal();
-        });
+        const modalClose = document.getElementById('modalClose');
+        if (modalClose) {
+            modalClose.addEventListener('click', () => {
+                this.closeModal();
+            });
+        }
 
-        document.getElementById('cancelEdit').addEventListener('click', () => {
-            this.closeModal();
-        });
+        const cancelEdit = document.getElementById('cancelEdit');
+        if (cancelEdit) {
+            cancelEdit.addEventListener('click', () => {
+                this.closeModal();
+            });
+        }
 
-        document.getElementById('saveEdit').addEventListener('click', () => {
-            this.saveProfile();
-        });
+        const saveEdit = document.getElementById('saveEdit');
+        if (saveEdit) {
+            saveEdit.addEventListener('click', () => {
+                this.saveProfile();
+            });
+        }
 
         // Overlay del modal
-        document.getElementById('modalOverlay').addEventListener('click', (e) => {
-            if (e.target === e.currentTarget) {
-                this.closeModal();
-            }
-        });
+        const modalOverlay = document.getElementById('modalOverlay');
+        if (modalOverlay) {
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) {
+                    this.closeModal();
+                }
+            });
+        }
 
         // Menú móvil
-        document.getElementById('mobileMenuToggle').addEventListener('click', () => {
-            this.toggleMobileMenu();
-        });
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                this.toggleMobileMenu();
+            });
+        }
 
-        document.getElementById('mobileOverlay').addEventListener('click', () => {
-            this.closeMobileMenu();
-        });
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        if (mobileOverlay) {
+            mobileOverlay.addEventListener('click', () => {
+                this.closeMobileMenu();
+            });
+        }
 
         // Botones de acción
-        document.getElementById('newPostBtn').addEventListener('click', () => {
-            this.showNotification('Función de nueva publicación próximamente', 'info');
-        });
+        const newPostBtn = document.getElementById('newPostBtn');
+        if (newPostBtn) {
+            newPostBtn.addEventListener('click', () => {
+                this.showNotification('Función de nueva publicación próximamente', 'info');
+            });
+        }
 
-        document.getElementById('sortBtn').addEventListener('click', () => {
-            this.toggleSort();
-        });
+        const sortBtn = document.getElementById('sortBtn');
+        if (sortBtn) {
+            sortBtn.addEventListener('click', () => {
+                this.toggleSort();
+            });
+        }
 
         // Editar banner
-        document.getElementById('editBannerBtn').addEventListener('click', () => {
-            this.showNotification('Función de editar banner próximamente', 'info');
-        });
+        const editBannerBtn = document.getElementById('editBannerBtn');
+        if (editBannerBtn) {
+            editBannerBtn.addEventListener('click', () => {
+                this.showNotification('Función de editar banner próximamente', 'info');
+            });
+        }
 
         // Responsive
         window.addEventListener('resize', () => {
@@ -199,20 +228,39 @@ class PerfilUsuario {
     }
 
     loadUserData() {
-        document.getElementById('username').textContent = userData.username;
-        document.getElementById('userHandle').textContent = userData.handle;
-        document.getElementById('karma').textContent = userData.karma.toLocaleString();
-        document.getElementById('posts').textContent = userData.posts;
-        document.getElementById('followers').textContent = userData.followers;
-        document.getElementById('communities').textContent = userData.communities;
-        
-        // Status indicator
+        const username = document.getElementById('username');
+        const userHandle = document.getElementById('userHandle');
+        const karma = document.getElementById('karma');
+        const posts = document.getElementById('posts');
+        const followers = document.getElementById('followers');
+        const communities = document.getElementById('communities');
         const statusIndicator = document.getElementById('statusIndicator');
-        statusIndicator.className = `status-indicator ${userData.status}`;
-        
+        const avatarImage = document.getElementById('avatarImage');
+        const bannerImage = document.getElementById('bannerImage');
+
+        if (username)
+            username.textContent = userData.username;
+        if (userHandle)
+            userHandle.textContent = userData.handle;
+        if (karma)
+            karma.textContent = userData.karma.toLocaleString();
+        if (posts)
+            posts.textContent = userData.posts;
+        if (followers)
+            followers.textContent = userData.followers;
+        if (communities)
+            communities.textContent = userData.communities;
+
+        // Status indicator
+        if (statusIndicator) {
+            statusIndicator.className = `status-indicator ${userData.status}`;
+        }
+
         // Avatar y banner
-        document.getElementById('avatarImage').src = userData.avatar;
-        document.getElementById('bannerImage').src = userData.banner;
+        if (avatarImage)
+            avatarImage.src = userData.avatar;
+        if (bannerImage)
+            bannerImage.src = userData.banner;
     }
 
     switchSection(section) {
@@ -220,7 +268,10 @@ class PerfilUsuario {
         document.querySelectorAll('.nav-item').forEach(item => {
             item.classList.remove('active');
         });
-        document.querySelector(`[data-section="${section}"]`).classList.add('active');
+        const activeItem = document.querySelector(`[data-section="${section}"]`);
+        if (activeItem) {
+            activeItem.classList.add('active');
+        }
 
         // Actualizar título
         const titles = {
@@ -230,7 +281,10 @@ class PerfilUsuario {
             'comunidades': 'Comunidades seguidas',
             'configuracion': 'Configuración'
         };
-        document.getElementById('contentTitle').textContent = titles[section];
+        const contentTitle = document.getElementById('contentTitle');
+        if (contentTitle && titles[section]) {
+            contentTitle.textContent = titles[section];
+        }
 
         // Cargar contenido
         this.currentSection = section;
@@ -244,13 +298,16 @@ class PerfilUsuario {
 
     loadContent(section) {
         const contentGrid = document.getElementById('contentGrid');
+        if (!contentGrid)
+            return;
+
         contentGrid.innerHTML = '';
         contentGrid.classList.add('loading');
 
         // Simular carga
         setTimeout(() => {
             contentGrid.classList.remove('loading');
-            
+
             switch (section) {
                 case 'publicaciones':
                     this.renderPublicaciones();
@@ -273,16 +330,19 @@ class PerfilUsuario {
 
     renderPublicaciones() {
         const contentGrid = document.getElementById('contentGrid');
+        if (!contentGrid)
+            return;
+
         contentData.publicaciones.forEach(post => {
             const card = this.createContentCard({
                 title: post.title,
                 content: post.content,
                 meta: `${post.community} • ${post.time}`,
                 actions: [
-                    { icon: 'fas fa-arrow-up', label: post.upvotes, action: 'upvote' },
-                    { icon: 'fas fa-arrow-down', label: post.downvotes, action: 'downvote' },
-                    { icon: 'fas fa-comment', label: post.comments, action: 'comment' },
-                    { icon: 'fas fa-share', label: 'Compartir', action: 'share' }
+                    {icon: 'fas fa-arrow-up', label: post.upvotes, action: 'upvote'},
+                    {icon: 'fas fa-arrow-down', label: post.downvotes, action: 'downvote'},
+                    {icon: 'fas fa-comment', label: post.comments, action: 'comment'},
+                    {icon: 'fas fa-share', label: 'Compartir', action: 'share'}
                 ]
             });
             contentGrid.appendChild(card);
@@ -291,15 +351,18 @@ class PerfilUsuario {
 
     renderComentarios() {
         const contentGrid = document.getElementById('contentGrid');
+        if (!contentGrid)
+            return;
+
         contentData.comentarios.forEach(comment => {
             const card = this.createContentCard({
                 title: `En: ${comment.post}`,
                 content: comment.comment,
                 meta: `${comment.community} • ${comment.time}`,
                 actions: [
-                    { icon: 'fas fa-arrow-up', label: comment.upvotes, action: 'upvote' },
-                    { icon: 'fas fa-arrow-down', label: comment.downvotes, action: 'downvote' },
-                    { icon: 'fas fa-reply', label: 'Responder', action: 'reply' }
+                    {icon: 'fas fa-arrow-up', label: comment.upvotes, action: 'upvote'},
+                    {icon: 'fas fa-arrow-down', label: comment.downvotes, action: 'downvote'},
+                    {icon: 'fas fa-reply', label: 'Responder', action: 'reply'}
                 ]
             });
             contentGrid.appendChild(card);
@@ -308,15 +371,18 @@ class PerfilUsuario {
 
     renderGuardados() {
         const contentGrid = document.getElementById('contentGrid');
+        if (!contentGrid)
+            return;
+
         contentData.guardados.forEach(saved => {
             const card = this.createContentCard({
                 title: saved.title,
                 content: `Por ${saved.author}`,
                 meta: `${saved.community} • ${saved.time}`,
                 actions: [
-                    { icon: 'fas fa-arrow-up', label: saved.upvotes, action: 'upvote' },
-                    { icon: 'fas fa-comment', label: saved.comments, action: 'comment' },
-                    { icon: 'fas fa-bookmark-slash', label: 'Eliminar', action: 'unsave' }
+                    {icon: 'fas fa-arrow-up', label: saved.upvotes, action: 'upvote'},
+                    {icon: 'fas fa-comment', label: saved.comments, action: 'comment'},
+                    {icon: 'fas fa-bookmark-slash', label: 'Eliminar', action: 'unsave'}
                 ]
             });
             contentGrid.appendChild(card);
@@ -325,14 +391,17 @@ class PerfilUsuario {
 
     renderComunidades() {
         const contentGrid = document.getElementById('contentGrid');
+        if (!contentGrid)
+            return;
+
         contentData.comunidades.forEach(community => {
             const card = this.createContentCard({
                 title: community.name,
                 content: community.description,
                 meta: `${community.members} miembros • Te uniste ${community.joined}`,
                 actions: [
-                    { icon: 'fas fa-eye', label: 'Visitar', action: 'visit' },
-                    { icon: 'fas fa-user-minus', label: 'Salir', action: 'leave' }
+                    {icon: 'fas fa-eye', label: 'Visitar', action: 'visit'},
+                    {icon: 'fas fa-user-minus', label: 'Salir', action: 'leave'}
                 ]
             });
             contentGrid.appendChild(card);
@@ -341,12 +410,15 @@ class PerfilUsuario {
 
     renderConfiguracion() {
         const contentGrid = document.getElementById('contentGrid');
+        if (!contentGrid)
+            return;
+
         const configHTML = `
             <div class="config-section">
                 <h3>Configuración de cuenta</h3>
                 <div class="config-item">
                     <label>Tema</label>
-                    <button class="config-btn" onclick="perfilUsuario.toggleTheme()">
+                    <button class="config-btn" onclick="window.perfilUsuario.toggleTheme()">
                         <i class="fas fa-${this.currentTheme === 'light' ? 'moon' : 'sun'}"></i>
                         ${this.currentTheme === 'light' ? 'Modo oscuro' : 'Modo claro'}
                     </button>
@@ -388,7 +460,7 @@ class PerfilUsuario {
             <div class="card-content">${data.content}</div>
             <div class="card-actions">
                 ${data.actions.map(action => `
-                    <button class="card-action ${action.action}" onclick="perfilUsuario.handleCardAction('${action.action}')">
+                    <button class="card-action ${action.action}" onclick="window.perfilUsuario.handleCardAction('${action.action}')">
                         <i class="${action.icon}"></i>
                         <span>${action.label}</span>
                     </button>
@@ -417,26 +489,43 @@ class PerfilUsuario {
 
     openEditModal() {
         const modal = document.getElementById('modalOverlay');
+        if (!modal)
+            return;
+
         modal.classList.add('active');
-        
+
         // Cargar datos actuales
-        document.getElementById('editUsername').value = userData.username;
-        document.getElementById('editHandle').value = userData.handle;
-        document.getElementById('editBio').value = userData.bio || '';
-        
+        const editUsername = document.getElementById('editUsername');
+        const editHandle = document.getElementById('editHandle');
+        const editBio = document.getElementById('editBio');
+
+        if (editUsername)
+            editUsername.value = userData.username;
+        if (editHandle)
+            editHandle.value = userData.handle;
+        if (editBio)
+            editBio.value = userData.bio || '';
+
         // Focus en el primer campo
-        document.getElementById('editUsername').focus();
+        if (editUsername)
+            editUsername.focus();
     }
 
     closeModal() {
         const modal = document.getElementById('modalOverlay');
-        modal.classList.remove('active');
+        if (modal) {
+            modal.classList.remove('active');
+        }
     }
 
     saveProfile() {
-        const username = document.getElementById('editUsername').value;
-        const handle = document.getElementById('editHandle').value;
-        const bio = document.getElementById('editBio').value;
+        const editUsername = document.getElementById('editUsername');
+        const editHandle = document.getElementById('editHandle');
+        const editBio = document.getElementById('editBio');
+
+        const username = editUsername ? editUsername.value : '';
+        const handle = editHandle ? editHandle.value : '';
+        const bio = editBio ? editBio.value : '';
 
         if (!username || !handle) {
             this.showNotification('Por favor completa todos los campos requeridos', 'error');
@@ -456,24 +545,28 @@ class PerfilUsuario {
     toggleMobileMenu() {
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('mobileOverlay');
-        
-        sidebar.classList.toggle('active');
-        overlay.classList.toggle('active');
+
+        if (sidebar)
+            sidebar.classList.toggle('active');
+        if (overlay)
+            overlay.classList.toggle('active');
     }
 
     closeMobileMenu() {
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('mobileOverlay');
-        
-        sidebar.classList.remove('active');
-        overlay.classList.remove('active');
+
+        if (sidebar)
+            sidebar.classList.remove('active');
+        if (overlay)
+            overlay.classList.remove('active');
     }
 
     toggleTheme() {
         this.currentTheme = this.currentTheme === 'light' ? 'dark' : 'light';
         document.body.setAttribute('data-theme', this.currentTheme);
         localStorage.setItem('theme', this.currentTheme);
-        
+
         if (this.currentSection === 'configuracion') {
             this.renderConfiguracion();
         }
@@ -499,23 +592,28 @@ class PerfilUsuario {
         });
 
         // Actualizar aria-pressed para el elemento activo
-        document.querySelector('.nav-item.active').setAttribute('aria-pressed', 'true');
+        const activeItem = document.querySelector('.nav-item.active');
+        if (activeItem) {
+            activeItem.setAttribute('aria-pressed', 'true');
+        }
     }
 
     setupTooltips() {
         const tooltip = document.getElementById('tooltip');
-        
+        if (!tooltip)
+            return;
+
         document.querySelectorAll('[data-tooltip]').forEach(element => {
             element.addEventListener('mouseenter', (e) => {
                 const text = e.target.getAttribute('data-tooltip');
                 tooltip.textContent = text;
                 tooltip.classList.add('show');
-                
+
                 const rect = e.target.getBoundingClientRect();
                 tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
                 tooltip.style.top = rect.top - tooltip.offsetHeight - 10 + 'px';
             });
-            
+
             element.addEventListener('mouseleave', () => {
                 tooltip.classList.remove('show');
             });
@@ -525,7 +623,7 @@ class PerfilUsuario {
     handleResize() {
         const wasMobile = this.isMobile;
         this.isMobile = window.innerWidth <= 768;
-        
+
         if (wasMobile !== this.isMobile) {
             if (!this.isMobile) {
                 this.closeMobileMenu();
@@ -536,9 +634,12 @@ class PerfilUsuario {
     handleKeyboard(e) {
         // Cerrar modal con Escape
         if (e.key === 'Escape') {
-            if (document.getElementById('modalOverlay').classList.contains('active')) {
+            const modal = document.getElementById('modalOverlay');
+            const sidebar = document.getElementById('sidebar');
+
+            if (modal && modal.classList.contains('active')) {
                 this.closeModal();
-            } else if (this.isMobile && document.getElementById('sidebar').classList.contains('active')) {
+            } else if (this.isMobile && sidebar && sidebar.classList.contains('active')) {
                 this.closeMobileMenu();
             }
         }
@@ -560,7 +661,7 @@ class PerfilUsuario {
             <i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'exclamation' : 'info'}"></i>
             <span>${message}</span>
         `;
-        
+
         // Agregar estilos si no existen
         if (!document.querySelector('.notification-styles')) {
             const style = document.createElement('style');
@@ -591,43 +692,87 @@ class PerfilUsuario {
             `;
             document.head.appendChild(style);
         }
-        
+
         document.body.appendChild(notification);
-        
+
         // Eliminar después de 3 segundos
         setTimeout(() => {
             notification.style.animation = 'slideInRight 0.3s ease-out reverse';
             setTimeout(() => {
-                document.body.removeChild(notification);
+                if (document.body.contains(notification)) {
+                    document.body.removeChild(notification);
+                }
             }, 300);
         }, 3000);
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    window.perfilUsuario = new PerfilUsuario();
+// Funciones de inicialización
+function initializeApp() {
+    // Inicializar la aplicación
+    console.log('Aplicación inicializada');
+}
 
+function setupEventListeners() {
+    // Configurar event listeners adicionales
+    console.log('Event listeners configurados');
+}
+
+function loadInitialContent() {
+    // Cargar contenido inicial
+    console.log('Contenido inicial cargado');
+}
+
+// Manejo del userButton y userMenu
+function setupUserMenu() {
     const userButton = document.getElementById('userButton');
     const userMenu = document.getElementById('userMenu');
 
-    userButton.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isExpanded = userButton.getAttribute('aria-expanded') === 'true';
-        if (isExpanded) {
-            userMenu.style.display = 'none';
-            userButton.setAttribute('aria-expanded', 'false');
-        } else {
-            userMenu.style.display = 'flex';
-            userButton.setAttribute('aria-expanded', 'true');
-        }
-    });
+    if (userButton && userMenu) {
+        userButton.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const isExpanded = userButton.getAttribute('aria-expanded') === 'true';
 
-    document.addEventListener('click', (e) => {
-        if (!userMenu.contains(e.target) && e.target !== userButton) {
-            userMenu.style.display = 'none';
-            userButton.setAttribute('aria-expanded', 'false');
+            if (isExpanded) {
+                userMenu.style.display = 'none';
+                userButton.setAttribute('aria-expanded', 'false');
+            } else {
+                userMenu.style.display = 'flex';
+                userButton.setAttribute('aria-expanded', 'true');
+            }
+        });
+
+        // Cerrar menú al hacer clic fuera
+        document.addEventListener('click', function (e) {
+            if (userMenu.style.display === 'flex' &&
+                    !userMenu.contains(e.target) &&
+                    e.target !== userButton) {
+                userMenu.style.display = 'none';
+                userButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Manejo del enlace de logout
+        const logoutLink = userMenu.querySelector('a[href*="InicioPaginaHTML.html"]');
+        if (logoutLink) {
+            logoutLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.location.href = '../PanelInicioPagina/InicioPaginaHTML.html';
+            });
         }
-    });
+    }
+}
+
+// Inicialización cuando el DOM está listo
+document.addEventListener('DOMContentLoaded', function () {
+    // Crear instancia global del perfil usuario
+    window.perfilUsuario = new PerfilUsuario();
+
+    // Inicializar funciones
+    initializeApp();
+    setupEventListeners();
+    loadInitialContent();
+    setupUserMenu();
 });
 
 // Agregar estilos adicionales para la configuración

@@ -188,7 +188,25 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // Add explicit logout redirect handler
+    const logoutLink = userMenu.querySelector('a[role="menuitem"][tabindex="0"]:last-child');
+    if (logoutLink) {
+        logoutLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.location.href = '../PanelInicioPagina/InicioPaginaHTML.html';
+        });
+    }
 });
+
+
+document.addEventListener('click', function (e) {
+    if (userMenu.style.display === 'flex' && !userMenu.contains(e.target) && e.target !== userButton) {
+        userMenu.style.display = 'none';
+        userButton.setAttribute('aria-expanded', 'false');
+    }
+});
+;
 
 function initializeApp() {
     // Configurar el tiempo actual
