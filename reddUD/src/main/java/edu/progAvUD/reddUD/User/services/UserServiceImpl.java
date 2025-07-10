@@ -2,16 +2,17 @@ package edu.progAvUD.reddUD.User.services;
 
 import edu.progAvUD.reddUD.User.models.ERole;
 import edu.progAvUD.reddUD.User.models.Role;
-import edu.progAvUD.reddUD.User.models.User;
+import edu.progAvUD.reddUD.User.models.AppUser;
 import edu.progAvUD.reddUD.User.repositories.RoleRepository;
-import edu.progAvUD.reddUD.User.repositories.UserRepository;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import edu.progAvUD.reddUD.User.repositories.AppUserRepository;
 
 /**
  *
@@ -21,30 +22,44 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public class UserServiceImpl implements IUserService {
 
     @Autowired
-    private UserRepository repositorio;
-    
+    private AppUserRepository repositorio;
+
     @Autowired
     private RoleRepository roleRepository;
 
     @CrossOrigin
-    public List<User> getAllUser() {
+    public List<AppUser> getAllUser() {
         return repositorio.findAll();
     }
 
     @CrossOrigin
-    public ResponseEntity<User> findByNombreUsuario(String nombreUsuario) {
-        User user = repositorio.findByNombreUsuario(nombreUsuario);
-        if (user != null) {
-            return ResponseEntity.ok(user);
+    public ResponseEntity<AppUser> findByNombreUsuario(String nombreUsuario) {
+        Optional<AppUser> userOptional = repositorio.findByNombreUsuario(nombreUsuario);
+        if (userOptional.isPresent()) {
+            return ResponseEntity.ok(userOptional.get());
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
     @CrossOrigin
-    public ResponseEntity<User> createUser(User user) {
+    public ResponseEntity<?> createUser(AppUser user) {
+        Optional<AppUser> porNombre = repositorio.findByNombreUsuario(user.getNombreUsuario());
+        if (porNombre.isPresent()) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("El nombre de usuario ya está en uso.");
+        }
+
+        Optional<AppUser> porEmail = repositorio.findByCorreo(user.getCorreo());
+        if (porEmail.isPresent()) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("El email ya está registrado.");
+        }
+
         try {
-            User nuevoUsuario = new User();
+            AppUser nuevoUsuario = new AppUser();
             nuevoUsuario.setCorreo(user.getCorreo());
             nuevoUsuario.setNombreUsuario(user.getNombreUsuario());
             nuevoUsuario.setContrasena(user.getContrasena());
@@ -65,23 +80,24 @@ public class UserServiceImpl implements IUserService {
     }
 
     @CrossOrigin
-    public ResponseEntity<User> deleteUserByNombreUsuario(String nombreUsuario) {
-        User user = repositorio.findByNombreUsuario(nombreUsuario);
-        if (user != null) {
-            repositorio.delete(user);
-            return ResponseEntity.ok(user); // 200 OK con el usuario eliminado
+    public ResponseEntity<AppUser> deleteUserByNombreUsuario(String nombreUsuario) {
+        Optional<AppUser> user = repositorio.findByNombreUsuario(nombreUsuario);
+        if (user.isPresent()) {
+            AppUser userToDelete = user.get();
+            repositorio.delete(userToDelete);
+            return ResponseEntity.ok(userToDelete); // 200 OK con el usuario eliminado
         } else {
             return ResponseEntity.notFound().build(); // 404 Not Found
         }
     }
 
     @CrossOrigin
-    public ResponseEntity<User> changeDataUserByNombreUsuario(String nombreUsuario, User user) {
-        User userGuardado = repositorio.findByNombreUsuario(nombreUsuario);
+    public ResponseEntity<AppUser> changeDataUserByNombreUsuario(String nombreUsuario, AppUser user) {
+        Optional<AppUser> userGuardadoOpt = repositorio.findByNombreUsuario(nombreUsuario);
 
-        if (userGuardado != null) {
+        if (userGuardadoOpt.isPresent()) {
+            AppUser userGuardado = userGuardadoOpt.get();
 
-            // Evita cambiar el correo o nombre de usuario a duplicados si ya existen en la base, eso lo debes validar por fuera si lo deseas
             if (user.getCorreo() != null) {
                 userGuardado.setCorreo(user.getCorreo());
             }
@@ -109,7 +125,6 @@ public class UserServiceImpl implements IUserService {
             if (user.getFechaRegistro() != null) {
                 userGuardado.setFechaRegistro(user.getFechaRegistro());
             }
-            // Puedes ajustar este comportamiento según si quieres sumar karma o reemplazarlo
             if (user.getKarma() != 0) {
                 userGuardado.setKarma(user.getKarma());
             }

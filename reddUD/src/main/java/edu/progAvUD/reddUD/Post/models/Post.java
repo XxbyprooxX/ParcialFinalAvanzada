@@ -2,7 +2,7 @@ package edu.progAvUD.reddUD.Post.models;
 
 import edu.progAvUD.reddUD.Comment.models.Comment;
 import edu.progAvUD.reddUD.Community.models.Community;
-import edu.progAvUD.reddUD.User.models.User;
+import edu.progAvUD.reddUD.User.models.AppUser;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -42,7 +42,7 @@ public class Post {
     private LocalDateTime creadoEn;
 
     @ManyToOne
-    private User autor;
+    private AppUser autor;
 
     @ManyToOne
     private Community comunidad;
@@ -53,7 +53,7 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comentarios;
 
-    public Post(Long id, String titulo, String contenido, byte[] imagen, User autor, Community comunidad, int votosPositivos, int votosNegativos, List<Comment> comentarios) {
+    public Post(Long id, String titulo, String contenido, byte[] imagen, AppUser autor, Community comunidad, int votosPositivos, int votosNegativos, List<Comment> comentarios) {
         this.id = id;
         this.titulo = titulo;
         this.contenido = contenido;

@@ -25,26 +25,26 @@ let hacerRegistro = async() => {
     campos.intereses = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(cb => cb.value);
 
 
-    const peticion = await fetch("http://localhost:9000/api/user",
-            {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(campos)
+const peticion = await fetch("http://localhost:9000/api/user/signup",
+        {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(campos)
 
-            });
+        });
 
-    if (peticion.ok) {
-        const data = await peticion.json();
-        // Redirigir al usuario o actualizar la UI
-        showSuccess();
-        window.location.href = "../PanelLogin/LoginHTML.html"; // Ejemplo de redirección
-    } else {
-        const errorData = await peticion.text(); // O .json() si el backend devuelve JSON de error
-        showFieldError(this,"Error en el Registro. Intentalo nuevamente");
-    }
+if (peticion.ok) {
+    const data = await peticion.json();
+    // Redirigir al usuario o actualizar la UI
+    showSuccess();
+    window.location.href = "../PanelLogin/LoginHTML.html"; // Ejemplo de redirección
+} else {
+    const errorData = await peticion.text(); // O .json() si el backend devuelve JSON de error
+    showFieldError(this,"Error en el Registro. Intentalo nuevamente");
+}
 };
 
 

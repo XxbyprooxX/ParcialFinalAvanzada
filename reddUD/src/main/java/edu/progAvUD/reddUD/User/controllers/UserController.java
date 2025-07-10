@@ -1,10 +1,11 @@
 package edu.progAvUD.reddUD.User.controllers;
 
-import edu.progAvUD.reddUD.User.models.User;
+import edu.progAvUD.reddUD.User.models.AppUser;
 import edu.progAvUD.reddUD.User.services.UserServiceImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,30 +24,50 @@ public class UserController {
     @Autowired
     private UserServiceImpl userServiceImpl;
     
+    @Autowired
+    private PasswordEncoder PasswordEncoder;
+    
+    @Autowired
+    private org.springframework.security.authentication.AuthenticationManager authenticationManager;
+    
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public List<User> getAllUser(){
+    public List<AppUser> getAllUser(){
         return userServiceImpl.getAllUser();
     }
     
     
     @RequestMapping(value = "/user/{nombreUsuario}", method = RequestMethod.GET)
-    public ResponseEntity<User> mostrarUsuarioByNombreUsuario(@PathVariable String nombreUsuario){
+    public ResponseEntity<AppUser> mostrarUsuarioByNombreUsuario(@PathVariable String nombreUsuario){
         return userServiceImpl.findByNombreUsuario(nombreUsuario);
     }
     
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public ResponseEntity<User> crearUsuario(@RequestBody User user){
+    @RequestMapping(value = "/user/signup", method = RequestMethod.POST)
+    public ResponseEntity<?> crearUsuario(@RequestBody AppUser user){
+        System.out.println(user);
+        user.setContrasena(PasswordEncoder.encode(user.getContrasena()));
         return userServiceImpl.createUser(user);
     }
     
     @RequestMapping(value ="/user/{nombreUsuario}", method = RequestMethod.DELETE)
-    public ResponseEntity<User> EliminarUsuarioPorUsuario(@PathVariable String nombreUsuario){
+    public ResponseEntity<AppUser> EliminarUsuarioPorUsuario(@PathVariable String nombreUsuario){
         return userServiceImpl.deleteUserByNombreUsuario(nombreUsuario);
     }
     
     @RequestMapping(value = "/user/{nombreUsuario}", method = RequestMethod.PATCH)
-    public ResponseEntity<User> cambiarDatoUserByNombreUsuario(@PathVariable String nombreUsuario,@RequestBody User user){
+    public ResponseEntity<AppUser> cambiarDatoUserByNombreUsuario(@PathVariable String nombreUsuario,@RequestBody AppUser user){
         return userServiceImpl.changeDataUserByNombreUsuario(nombreUsuario, user);
     }
     
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ResponseEntity<?> login(@RequestBody AppUser user) {
+        System.out.println(user);
+        try {
+            org.springframework.security.authentication.UsernamePasswordAuthenticationToken authToken =
+                new org.springframework.security.authentication.UsernamePasswordAuthenticationToken(user.getNombreUsuario(), user.getContrasena());
+            authenticationManager.authenticate(authToken);
+            return ResponseEntity.ok("Login successful");
+        } catch (org.springframework.security.core.AuthenticationException e) {
+            return ResponseEntity.status(401).body("Invalid username or password");
+        }
+    }
 }

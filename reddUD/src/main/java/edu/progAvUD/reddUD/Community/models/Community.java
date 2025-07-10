@@ -1,6 +1,6 @@
 package edu.progAvUD.reddUD.Community.models;
 
-import edu.progAvUD.reddUD.User.models.User;
+import edu.progAvUD.reddUD.User.models.AppUser;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,12 +42,12 @@ public class Community {
     private byte[] avatar;
 
     @ManyToMany
-    private List<User> miembros;
+    private List<AppUser> miembros;
 
     @ManyToMany
-    private List<User> moderadores;
+    private List<AppUser> moderadores;
 
-    public Community(Long id, String nombre, String identificador, String descripcion, byte[] banner, byte[] avatar, List<User> miembros, List<User> moderadores) {
+    public Community(Long id, String nombre, String identificador, String descripcion, byte[] banner, byte[] avatar, List<AppUser> miembros, List<AppUser> moderadores) {
         this.id = id;
         this.nombre = nombre;
         this.identificador = identificador;

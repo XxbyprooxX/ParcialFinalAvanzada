@@ -10,14 +10,22 @@ let hacerLogin = async() => {
     campos.nombreUsuario = document.getElementById("usuario").value;
     campos.contrasena = document.getElementById("password").value;
 
-    const peticion = await fetch("http://localhost:8080/api/login",
-            {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(campos)
+const peticion = await fetch("http://localhost:9000/api/login",
+        {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(campos)
 
-            });
+        });
+
+if (peticion.ok) {
+    // You can handle successful login here, e.g., redirect or store token
+    window.location.href = "../PanelInicioPagina/InicioPaginaHTML.html"; // Example redirect after login
+} else {
+    // Handle login failure
+    alert("Error en el login. Intenta nuevamente.");
+}
 };

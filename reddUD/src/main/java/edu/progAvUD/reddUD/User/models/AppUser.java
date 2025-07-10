@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -74,7 +74,7 @@ public class User {
     private Set<Role> roles;
 
 
-    public User(String correo, String nombreUsuario, String contraseña, String genero, List<String> intereses, LocalDate fechaRegistro, Set<Role> roles) {
+    public AppUser(String correo, String nombreUsuario, String contraseña, String genero, List<String> intereses, LocalDate fechaRegistro, Set<Role> roles) {
         this.correo = correo;
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contraseña;
@@ -85,7 +85,7 @@ public class User {
     }
 
     
-    public User(Long id, String correo, String nombreUsuario, String contraseña, String genero, List<String> intereses, byte[] avatar, byte[] banner) {
+    public AppUser(Long id, String correo, String nombreUsuario, String contraseña, String genero, List<String> intereses, byte[] avatar, byte[] banner) {
         this.id = id;
         this.correo = correo;
         this.nombreUsuario = nombreUsuario;

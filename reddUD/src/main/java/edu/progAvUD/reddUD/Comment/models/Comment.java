@@ -1,7 +1,7 @@
 package edu.progAvUD.reddUD.Comment.models;
 
 import edu.progAvUD.reddUD.Post.models.Post;
-import edu.progAvUD.reddUD.User.models.User;
+import edu.progAvUD.reddUD.User.models.AppUser;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,12 +30,12 @@ public class Comment {
     private LocalDateTime creadoEn;
 
     @ManyToOne
-    private User autor;
+    private AppUser autor;
 
     @ManyToOne
     private Post post;
 
-    public Comment(Long id, String contenido, User autor, Post post) {
+    public Comment(Long id, String contenido, AppUser autor, Post post) {
         this.id = id;
         this.contenido = contenido;
         this.creadoEn = LocalDateTime.now();

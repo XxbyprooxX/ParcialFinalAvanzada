@@ -6,4 +6,6 @@ package edu.progAvUD.reddUD.User.services;
  */
 public interface IUserService {
     
+    
+    
 }
