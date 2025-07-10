@@ -3,22 +3,32 @@ package edu.progAvUD.reddUD.User.models;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToMany;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author Cristianlol789
  */
-
 @Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -31,8 +41,10 @@ public class User {
     @Column(nullable = false, unique = true)
     private String nombreUsuario;
 
+    private String ubicacion;
+
     @Column(nullable = false)
-    private String contraseña;
+    private String contrasena;
 
     @Column(nullable = false)
     private String genero;
@@ -52,25 +64,39 @@ public class User {
     private LocalDate fechaRegistro;
 
     private int karma;
+    
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "user_roles",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
 
-    @ElementCollection
-    private ArrayList<String> interes;
 
-    public User(Long id, String correo, String nombreUsuario, String contraseña, String genero, List<String> intereses, byte[] avatar, byte[] banner, ArrayList<String> interes) {
+    public User(String correo, String nombreUsuario, String contraseña, String genero, List<String> intereses, LocalDate fechaRegistro, Set<Role> roles) {
+        this.correo = correo;
+        this.nombreUsuario = nombreUsuario;
+        this.contrasena = contraseña;
+        this.genero = genero;
+        this.intereses = intereses;
+        this.fechaRegistro = fechaRegistro;
+        this.roles = roles;
+    }
+
+    
+    public User(Long id, String correo, String nombreUsuario, String contraseña, String genero, List<String> intereses, byte[] avatar, byte[] banner) {
         this.id = id;
         this.correo = correo;
         this.nombreUsuario = nombreUsuario;
-        this.contraseña = contraseña;
+        this.contrasena = contraseña;
         this.genero = genero;
         this.intereses = intereses;
         this.avatar = avatar;
         this.banner = banner;
         this.fechaRegistro = LocalDate.now();
         this.karma = 0;
-        this.interes = interes;
     }
 
-    public User() {
-    }
 
 }
