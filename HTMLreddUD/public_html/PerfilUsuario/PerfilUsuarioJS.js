@@ -604,9 +604,30 @@ class PerfilUsuario {
     }
 }
 
-// Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
     window.perfilUsuario = new PerfilUsuario();
+
+    const userButton = document.getElementById('userButton');
+    const userMenu = document.getElementById('userMenu');
+
+    userButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isExpanded = userButton.getAttribute('aria-expanded') === 'true';
+        if (isExpanded) {
+            userMenu.style.display = 'none';
+            userButton.setAttribute('aria-expanded', 'false');
+        } else {
+            userMenu.style.display = 'flex';
+            userButton.setAttribute('aria-expanded', 'true');
+        }
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!userMenu.contains(e.target) && e.target !== userButton) {
+            userMenu.style.display = 'none';
+            userButton.setAttribute('aria-expanded', 'false');
+        }
+    });
 });
 
 // Agregar estilos adicionales para la configuración

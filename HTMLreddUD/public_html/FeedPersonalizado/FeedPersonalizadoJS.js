@@ -160,11 +160,34 @@ const mockCommunities = [
     }
 ];
 
-// Inicialización de la aplicación
 document.addEventListener('DOMContentLoaded', function () {
     initializeApp();
     setupEventListeners();
     loadInitialContent();
+
+    // User button toggle and outside click close
+    const userButton = document.getElementById('userButton');
+    const userMenu = document.getElementById('userMenu');
+
+    if (userButton && userMenu) {
+        userButton.addEventListener('click', function (e) {
+            e.stopPropagation();
+            if (userMenu.style.display === 'flex') {
+                userMenu.style.display = 'none';
+                userButton.setAttribute('aria-expanded', 'false');
+            } else {
+                userMenu.style.display = 'flex';
+                userButton.setAttribute('aria-expanded', 'true');
+            }
+        });
+
+        document.addEventListener('click', function (e) {
+            if (userMenu.style.display === 'flex' && !userMenu.contains(e.target) && e.target !== userButton) {
+                userMenu.style.display = 'none';
+                userButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
 });
 
 function initializeApp() {
