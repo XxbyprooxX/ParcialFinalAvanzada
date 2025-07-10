@@ -5,10 +5,8 @@ import edu.progAvUD.reddUD.User.services.UserServiceImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,7 +35,7 @@ public class UserController {
     }
     
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public ResponseEntity<User> crearUsuario(User user){
+    public ResponseEntity<User> crearUsuario(@RequestBody User user){
         return userServiceImpl.createUser(user);
     }
     
@@ -47,7 +45,7 @@ public class UserController {
     }
     
     @RequestMapping(value = "/user/{nombreUsuario}", method = RequestMethod.PATCH)
-    public ResponseEntity<User> cambiarDatoUserByNombreUsuario(@PathVariable String nombreUsuario, User user){
+    public ResponseEntity<User> cambiarDatoUserByNombreUsuario(@PathVariable String nombreUsuario,@RequestBody User user){
         return userServiceImpl.changeDataUserByNombreUsuario(nombreUsuario, user);
     }
     

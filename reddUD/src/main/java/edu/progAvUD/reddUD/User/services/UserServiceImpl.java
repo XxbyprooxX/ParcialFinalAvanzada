@@ -1,8 +1,12 @@
 package edu.progAvUD.reddUD.User.services;
 
+import edu.progAvUD.reddUD.User.models.ERole;
+import edu.progAvUD.reddUD.User.models.Role;
 import edu.progAvUD.reddUD.User.models.User;
+import edu.progAvUD.reddUD.User.repositories.RoleRepository;
 import edu.progAvUD.reddUD.User.repositories.UserRepository;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +22,9 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private UserRepository repositorio;
+    
+    @Autowired
+    private RoleRepository roleRepository;
 
     @CrossOrigin
     public List<User> getAllUser() {
@@ -37,7 +44,20 @@ public class UserServiceImpl implements IUserService {
     @CrossOrigin
     public ResponseEntity<User> createUser(User user) {
         try {
-            User nuevoUsuario = repositorio.save(user);
+            User nuevoUsuario = new User();
+            nuevoUsuario.setCorreo(user.getCorreo());
+            nuevoUsuario.setNombreUsuario(user.getNombreUsuario());
+            nuevoUsuario.setContrasena(user.getContrasena());
+            nuevoUsuario.setGenero(user.getGenero());
+            nuevoUsuario.setIntereses(user.getIntereses());
+            nuevoUsuario.setFechaRegistro(user.getFechaRegistro());
+
+            // Asignar rol por defecto: USUARIO_NORMAL
+            Role defaultRole = roleRepository.findByName(ERole.USUARIO_NORMAL)
+                    .orElseThrow(() -> new RuntimeException("Rol USUARIO_NORMAL no existe"));
+            nuevoUsuario.setRoles(Set.of(defaultRole));
+
+            repositorio.save(nuevoUsuario);
             return ResponseEntity.status(HttpStatus.CREATED).body(nuevoUsuario);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
