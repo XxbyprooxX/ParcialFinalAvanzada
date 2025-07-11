@@ -869,13 +869,39 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
-// Initialize the application
 init();
 
-// Add some dynamic content loading simulation
 setTimeout(() => {
     const loadingStates = document.querySelectorAll('.loading');
     loadingStates.forEach(state => {
         state.style.display = 'none';
     });
 }, 1000);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const communityName = localStorage.getItem('selectedCommunity');
+    const nameElement = document.querySelector('.community-name');
+    const handleElement = document.querySelector('.community-handle');
+
+    if (communityName && nameElement && handleElement) {
+        nameElement.textContent = communityName.replace('r/', '');
+        handleElement.textContent = communityName;
+    }
+
+    const leaveBtn = document.getElementById('joinBtn');
+    if (leaveBtn) {
+        leaveBtn.addEventListener('click', () => {
+            if (leaveBtn.classList.contains('joined')) {
+                localStorage.setItem('leaveCommunity', communityName);
+            }
+        });
+    }
+});
+
+window.addEventListener('beforeunload', () => {
+    const toLeave = localStorage.getItem('leaveCommunity');
+    if (toLeave) {
+        window.opener?.postMessage({ leaveCommunity: toLeave }, "*");
+        localStorage.removeItem('leaveCommunity');
+    }
+});

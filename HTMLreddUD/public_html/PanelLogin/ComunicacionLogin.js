@@ -31,6 +31,10 @@ const hacerLogin = async () => {
         if (usuario) {
             alert(`ID del usuario: ${usuario.id}`);
 
+            // Set userId and nombreUsuario in localStorage for authentication check
+            localStorage.setItem("userId", usuario.id);
+            localStorage.setItem("nombreUsuario", nombreUsuario);
+
             setTimeout(() => {
                 window.location.href = "../FeedPersonalizado/FeedPersonalizadoHTML.html";
             }, 2500);

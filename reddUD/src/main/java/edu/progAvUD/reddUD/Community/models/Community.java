@@ -1,20 +1,10 @@
 package edu.progAvUD.reddUD.Community.models;
 
 import edu.progAvUD.reddUD.User.models.AppUser;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToMany;
-import java.util.List;
+import jakarta.persistence.*;
 import lombok.Data;
-
-/**
- *
- * @author Cristianlol789
- */
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -28,7 +18,7 @@ public class Community {
     private String nombre;
 
     @Column(nullable = false, unique = true)
-    private String identificador; 
+    private String identificador;
 
     @Column(nullable = false, length = 500)
     private String descripcion;
@@ -41,13 +31,27 @@ public class Community {
     @Column(name = "avatar", columnDefinition = "LONGBLOB")
     private byte[] avatar;
 
-    @ManyToMany
-    private List<AppUser> miembros;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "user_community",
+        joinColumns = @JoinColumn(name = "community_id"),
+        inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<AppUser> miembros = new HashSet<>();
 
-    @ManyToMany
-    private List<AppUser> moderadores;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "moderator_community",
+        joinColumns = @JoinColumn(name = "community_id"),
+        inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    
+    private Set<AppUser> moderadores = new HashSet<>();
 
-    public Community(Long id, String nombre, String identificador, String descripcion, byte[] banner, byte[] avatar, List<AppUser> miembros, List<AppUser> moderadores) {
+    public Community() {
+    }
+
+    public Community(Long id, String nombre, String identificador, String descripcion, byte[] banner, byte[] avatar, Set<AppUser> miembros, Set<AppUser> moderadores) {
         this.id = id;
         this.nombre = nombre;
         this.identificador = identificador;
@@ -57,8 +61,4 @@ public class Community {
         this.miembros = miembros;
         this.moderadores = moderadores;
     }
-
-    public Community() {
-    }
-     
 }

@@ -1,13 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package edu.progAvUD.reddUD.Community.services;
+
+import edu.progAvUD.reddUD.Community.models.Community;
+import java.util.List;
 
 /**
  *
  * @author Cristianlol789
  */
 public interface ICommunityService {
-    
+    List<Community> getJoinedCommunitiesByUserId(Long userId);
 }

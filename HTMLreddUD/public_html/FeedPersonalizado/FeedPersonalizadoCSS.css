@@ -725,3 +725,35 @@ body {
     font-size: 0.85rem;
     color: #666;
 }
+
+.modal-overlay {
+    position: fixed;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    z-index:10000;
+}
+.create-community-modal {
+    background: white;
+    padding:20px;
+    border-radius:10px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    width:300px;
+}
+.create-community-modal input, .create-community-modal textarea {
+    width:100%;
+    padding:5px;
+}
+.create-community-btn {
+    margin-top:10px;
+    background:#007BFF;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:5px;
+    cursor:pointer;
+}
