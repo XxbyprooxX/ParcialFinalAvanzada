@@ -78,8 +78,30 @@
                     <h3 class="sidebar-title">
                         <i class="fas fa-plus-circle"></i>Comunidades sugeridas
                     </h3>
+                    <button id="createCommunityBtn" class="create-community-btn" aria-haspopup="dialog" aria-controls="createCommunityModal">
+                        <i class="fas fa-plus"></i> Crear Comunidad
+                    </button>
                     <div class="suggested-communities" id="suggestedCommunities"></div>
                 </aside>
+
+                <!-- Modal para crear comunidad -->
+                <div id="createCommunityModal" class="modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="createCommunityTitle">
+                    <div class="create-community-modal">
+                        <h3 id="createCommunityTitle">Crear Nueva Comunidad</h3>
+                        <form id="createCommunityForm">
+                            <label for="communityName">Nombre de la comunidad</label>
+                            <input type="text" id="communityName" name="communityName" required minlength="3" maxlength="50" placeholder="Nombre de la comunidad" />
+                            
+                            <label for="communityDescription">Descripción</label>
+                            <textarea id="communityDescription" name="communityDescription" rows="4" maxlength="200" placeholder="Descripción breve"></textarea>
+                            
+                            <div class="modal-actions">
+                                <button type="submit" class="btn-primary">Crear</button>
+                                <button type="button" id="cancelCreateCommunity" class="btn-secondary">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
                 <!-- Notificaciones -->
                 <div class="notification-container" id="notificationContainer"></div>

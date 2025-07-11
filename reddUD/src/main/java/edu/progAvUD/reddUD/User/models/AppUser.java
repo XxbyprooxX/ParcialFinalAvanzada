@@ -53,13 +53,13 @@ public class AppUser {
     @Column(name = "interes")
     private List<String> intereses;
 
-    @Lob
-    @Column(name = "avatar", columnDefinition = "LONGBLOB")
-    private byte[] avatar;
-
-    @Lob
-    @Column(name = "banner", columnDefinition = "LONGBLOB")
-    private byte[] banner;
+//    @Lob
+//    @Column(name = "avatar", columnDefinition = "LONGBLOB")
+//    private byte[] avatar;
+//
+//    @Lob
+//    @Column(name = "banner", columnDefinition = "LONGBLOB")
+//    private byte[] banner;
 
     private LocalDate fechaRegistro;
 
@@ -84,19 +84,6 @@ public class AppUser {
         this.roles = roles;
     }
 
-    
-    public AppUser(Long id, String correo, String nombreUsuario, String contraseña, String genero, List<String> intereses, byte[] avatar, byte[] banner) {
-        this.id = id;
-        this.correo = correo;
-        this.nombreUsuario = nombreUsuario;
-        this.contrasena = contraseña;
-        this.genero = genero;
-        this.intereses = intereses;
-        this.avatar = avatar;
-        this.banner = banner;
-        this.fechaRegistro = LocalDate.now();
-        this.karma = 0;
-    }
 
 
 }

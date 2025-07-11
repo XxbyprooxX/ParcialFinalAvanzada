@@ -80,9 +80,6 @@ public class PostServiceImpl implements IPostService{
         if (nuevosDatos.getContenido() != null) {
             postGuardado.setContenido(nuevosDatos.getContenido());
         }
-        if (nuevosDatos.getImagen() != null && nuevosDatos.getImagen().length > 0) {
-            postGuardado.setImagen(nuevosDatos.getImagen());
-        }
 
         // Guardar y devolver actualizado
         Post actualizado = postRepository.save(postGuardado);

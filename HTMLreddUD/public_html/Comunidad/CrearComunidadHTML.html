@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crear Comunidad</title>
+    <link rel="stylesheet" href="CrearComunidadCSS.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Crear Nueva Comunidad</h1>
+        <form id="crearComunidadForm" enctype="multipart/form-data">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required />
+
+            <label for="identificador">Identificador:</label>
+            <input type="text" id="identificador" name="identificador" required />
+
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+
+            <label for="banner">Banner (imagen):</label>
+            <input type="file" id="banner" name="banner" accept="image/*" />
+
+            <label for="avatar">Avatar (imagen):</label>
+            <input type="file" id="avatar" name="avatar" accept="image/*" />
+
+            <button type="submit">Crear Comunidad</button>
+        </form>
+        <div id="mensaje"></div>
+    </div>
+    <script src="CrearComunidadJS.js"></script>
+</body>
+</html>

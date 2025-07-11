@@ -23,13 +23,13 @@ public class Community {
     @Column(nullable = false, length = 500)
     private String descripcion;
 
-    @Lob
-    @Column(name = "banner", columnDefinition = "LONGBLOB")
-    private byte[] banner;
-
-    @Lob
-    @Column(name = "avatar", columnDefinition = "LONGBLOB")
-    private byte[] avatar;
+//    @Lob
+//    @Column(name = "banner", columnDefinition = "LONGBLOB")
+//    private byte[] banner;
+//
+//    @Lob
+//    @Column(name = "avatar", columnDefinition = "LONGBLOB")
+//    private byte[] avatar;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -51,14 +51,5 @@ public class Community {
     public Community() {
     }
 
-    public Community(Long id, String nombre, String identificador, String descripcion, byte[] banner, byte[] avatar, Set<AppUser> miembros, Set<AppUser> moderadores) {
-        this.id = id;
-        this.nombre = nombre;
-        this.identificador = identificador;
-        this.descripcion = descripcion;
-        this.banner = banner;
-        this.avatar = avatar;
-        this.miembros = miembros;
-        this.moderadores = moderadores;
-    }
+
 }

@@ -73,6 +73,17 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (greetingText && nombreUsuario) {
         greetingText.textContent = `Hola ${nombreUsuario}, esto es lo que está pasando ahora`;
     }
+
+    // Add event listener for crear comunidad button
+    const crearComunidadBtn = document.getElementById('createCommunityBtn');
+    if (crearComunidadBtn) {
+        crearComunidadBtn.addEventListener('click', () => {
+            window.open('../Comunidad/CrearComunidadHTML.html', '_blank');
+        });
+    }
+
+    // Refresh joined communities after page load
+    await refreshJoinedCommunities();
 });
 
 function initializeApp() {
@@ -285,6 +296,34 @@ function renderSuggestedCommunities() {
         communityDiv.appendChild(members);
         suggestedContainer.appendChild(communityDiv);
     });
+}
+
+// Function to refresh joined communities list after creation
+async function refreshJoinedCommunities() {
+    const joinedContainer = document.getElementById('joinedCommunities');
+    if (!joinedContainer) return;
+    try {
+        const response = await fetch(`http://localhost:9000/api/community/joined/user/${userId}`, { mode: 'cors' });
+        if (!response.ok) {
+            console.error('Error fetching joined communities');
+            return;
+        }
+        const communities = await response.json();
+        joinedContainer.innerHTML = '';
+        communities.forEach(community => {
+            const communityDiv = document.createElement('div');
+            communityDiv.className = 'community';
+            const name = document.createElement('h4');
+            name.textContent = community.name || 'Comunidad';
+            const description = document.createElement('p');
+            description.textContent = community.description || '';
+            communityDiv.appendChild(name);
+            communityDiv.appendChild(description);
+            joinedContainer.appendChild(communityDiv);
+        });
+    } catch (error) {
+        console.error('Error fetching joined communities:', error);
+    }
 }
 
 function renderJoinedCommunities() {

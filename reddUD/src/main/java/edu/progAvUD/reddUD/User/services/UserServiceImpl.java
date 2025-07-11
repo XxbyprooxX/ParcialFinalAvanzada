@@ -121,12 +121,6 @@ public class UserServiceImpl {
             if (user.getIntereses() != null && !user.getIntereses().isEmpty()) {
                 userGuardado.setIntereses(user.getIntereses());
             }
-            if (user.getAvatar() != null && user.getAvatar().length > 0) {
-                userGuardado.setAvatar(user.getAvatar());
-            }
-            if (user.getBanner() != null && user.getBanner().length > 0) {
-                userGuardado.setBanner(user.getBanner());
-            }
             if (user.getFechaRegistro() != null) {
                 userGuardado.setFechaRegistro(user.getFechaRegistro());
             }

@@ -35,10 +35,6 @@ public class Post {
     @Column(length = 2000)
     private String contenido;
 
-    @Lob
-    @Column(name = "imagen", columnDefinition = "LONGBLOB")
-    private byte[] imagen;
-
     private LocalDateTime creadoEn;
 
     @ManyToOne
@@ -53,18 +49,6 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comentarios;
 
-    public Post(Long id, String titulo, String contenido, byte[] imagen, AppUser autor, Community comunidad, int votosPositivos, int votosNegativos, List<Comment> comentarios) {
-        this.id = id;
-        this.titulo = titulo;
-        this.contenido = contenido;
-        this.imagen = imagen;
-        this.creadoEn = LocalDateTime.now();
-        this.autor = autor;
-        this.comunidad = comunidad;
-        this.votosPositivos = votosPositivos;
-        this.votosNegativos = votosNegativos;
-        this.comentarios = comentarios;
-    }
 
     public Post() {
     }

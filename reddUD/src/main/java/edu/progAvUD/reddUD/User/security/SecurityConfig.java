@@ -65,10 +65,7 @@ public class SecurityConfig {
 
                     // Rutas públicas
                     registry.requestMatchers(
-                            "/api/user/signup",
-                            "/api/user/**",
-                            "/api/users", // <--- Permitir esta ruta
-                            "/api/login"
+                            "/api/**"
                     ).permitAll();
 
                     // Proteger todo lo demás

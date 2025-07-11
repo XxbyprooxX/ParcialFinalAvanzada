@@ -1,0 +1,80 @@
+/* Color theory inspired palette with warm and cool tones */
+/* Background gradient with heat map style */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #fad0c4 50%, #a18cd1 100%);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+    padding: 30px 40px;
+    width: 400px;
+    max-width: 90%;
+}
+
+h1 {
+    text-align: center;
+    color: #6a1b9a;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #4a148c;
+}
+
+form input[type="text"],
+form textarea,
+form input[type="file"] {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 5px;
+    border: 2px solid #ce93d8;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form textarea:focus,
+form input[type="file"]:focus {
+    border-color: #7b1fa2;
+    outline: none;
+}
+
+form button {
+    margin-top: 25px;
+    width: 100%;
+    padding: 12px;
+    background: #7b1fa2;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form button:hover {
+    background: #4a148c;
+}
+
+#mensaje {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: 600;
+    color: #d32f2f;
+}
