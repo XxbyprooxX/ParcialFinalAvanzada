@@ -40,7 +40,10 @@ if (peticion.ok) {
     const data = await peticion.json();
     // Redirigir al usuario o actualizar la UI
     showSuccess();
-    window.location.href = "../PanelLogin/LoginHTML.html"; // Ejemplo de redirección
+    
+    setTimeout(() => {
+        window.location.href = "../PanelLogin/LoginHTML.html";
+    }, 2500); 
 } else {
     const errorData = await peticion.text(); // O .json() si el backend devuelve JSON de error
     showFieldError(this,"Error en el Registro. Intentalo nuevamente");

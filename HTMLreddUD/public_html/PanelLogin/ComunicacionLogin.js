@@ -23,7 +23,9 @@ const peticion = await fetch("http://localhost:9000/api/login",
 
 if (peticion.ok) {
     // You can handle successful login here, e.g., redirect or store token
-    window.location.href = "../PanelInicioPagina/InicioPaginaHTML.html"; // Example redirect after login
+    setTimeout(() => {
+        window.location.href = "../FeedPersonalizado/FeedPersonalizadoHTML.html";
+    }, 2500); // 2000 milisegundos = 2 segundos// Example redirect after login
 } else {
     // Handle login failure
     alert("Error en el login. Intenta nuevamente.");
