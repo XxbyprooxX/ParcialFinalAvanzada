@@ -54,10 +54,27 @@ public class SecurityConfig {
                         -> httpForm.loginPage("/api/user/login").permitAll()
                 )
                 .authorizeHttpRequests(registry -> {
-                    registry.requestMatchers("/api/user/signup").permitAll();
-                    registry.requestMatchers("/api/login").permitAll();
+                    // Permitir acceso a Swagger
+                    registry.requestMatchers(
+                            "/swagger-ui/**",
+                            "/v3/api-docs/**",
+                            "/swagger-resources/**",
+                            "/swagger-ui.html",
+                            "/webjars/**"
+                    ).permitAll();
+
+                    // Rutas públicas
+                    registry.requestMatchers(
+                            "/api/user/signup",
+                            "/api/user/**",
+                            "/api/users", // <--- Permitir esta ruta
+                            "/api/login"
+                    ).permitAll();
+
+                    // Proteger todo lo demás
                     registry.anyRequest().authenticated();
                 })
                 .build();
     }
+
 }
