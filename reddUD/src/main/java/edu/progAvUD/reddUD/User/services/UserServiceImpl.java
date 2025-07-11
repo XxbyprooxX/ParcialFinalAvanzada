@@ -19,13 +19,16 @@ import edu.progAvUD.reddUD.User.repositories.AppUserRepository;
  * @author Cristianlol789
  */
 @Service
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl {
 
     @Autowired
     private AppUserRepository repositorio;
 
     @Autowired
     private RoleRepository roleRepository;
+    
+    @Autowired
+    private MailService mailService;
 
     @CrossOrigin
     public List<AppUser> getAllUser() {
@@ -71,7 +74,9 @@ public class UserServiceImpl implements IUserService {
             Role defaultRole = roleRepository.findByName(ERole.USUARIO_NORMAL)
                     .orElseThrow(() -> new RuntimeException("Rol USUARIO_NORMAL no existe"));
             nuevoUsuario.setRoles(Set.of(defaultRole));
-
+            
+            mailService.sendMessageUserRegister(user.getCorreo(), user.getNombreUsuario(), "Bienvenido a Reddud!!!");
+            
             repositorio.save(nuevoUsuario);
             return ResponseEntity.status(HttpStatus.CREATED).body(nuevoUsuario);
         } catch (Exception e) {

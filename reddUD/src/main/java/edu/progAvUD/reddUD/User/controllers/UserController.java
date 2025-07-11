@@ -1,6 +1,7 @@
 package edu.progAvUD.reddUD.User.controllers;
 
 import edu.progAvUD.reddUD.User.models.AppUser;
+import edu.progAvUD.reddUD.User.services.MailService;
 import edu.progAvUD.reddUD.User.services.UserServiceImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class UserController {
     
     @Autowired
     private PasswordEncoder PasswordEncoder;
+    
     
     @Autowired
     private org.springframework.security.authentication.AuthenticationManager authenticationManager;
